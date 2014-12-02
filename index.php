@@ -1,3 +1,6 @@
+<?php $showsearch="true" ?>
+<?php include('includes/sitevariables.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

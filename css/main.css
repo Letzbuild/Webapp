@@ -9,9 +9,24 @@
     background: #f47115;
 }
 
+.modal .modal-body {
+    
+    overflow-y: auto;
+}
+.formouter{
+margin:0px 20px 0px 20px	
+}
+
+.custom-input-group{
+	padding-bottom:20px;
+}
+
+
 
 /* customized css ends*/
-
+.superclass{
+	color:red;
+}
 
 
 body {

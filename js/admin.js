@@ -8,6 +8,8 @@ document.getElementById(errormessagefieldname).style.color=errorcolor;
 
 function adminloginform()
 {
+$('.success').fadeIn(200).hide();
+$('.error').fadeIn(200).hide();
 var msg=''
 var errtype='finished';
 
@@ -40,8 +42,8 @@ if (errtype=='unfinished')
 	}
 if (errtype=='finished')
 	{
-		var encryptpassword=md5(password)
-		var dataString = 'email='+ username + '&password=' + encryptpassword;
+		
+		var dataString = 'username='+ username + '&password=' + password;
 
 		var xmlhttp;
 		if (window.XMLHttpRequest)
@@ -56,11 +58,11 @@ if (errtype=='finished')
 		  {
 			if (xmlhttp.readyState==2)
 			{
-			alert("2")
+			//alert("2")
 			}	  
 			 if (xmlhttp.readyState==3)
 			{
-			alert("3")
+			//alert("3")
 			} 
 			
 			
@@ -69,22 +71,122 @@ if (errtype=='finished')
 				var responsetext=xmlhttp.responseText;
 					{
 						
-					alert(responsetext)
-					document.getElementById('loginform').reset();
-					$('.success').fadeIn(200).show();
+					//alert(responsetext)
+					checklogin(username,responsetext);
+					//document.getElementById('loginform').reset();
+					//$('.success').fadeIn(200).show();
 						
 					}
 
 				}
 
 		  }
-		xmlhttp.open("POST","http://localhost:4567/buyers/add",true);
+		xmlhttp.open("POST","processlogin.php",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send(dataString);
 		
 
 	}		
 }
+
+
+function checklogin(enteredusername,enteredpassword)
+{
+	var submitlink="http://localhost:4567/users/"
+	submitlink=submitlink + enteredusername
+
+	var dataString1 = 'username='+ enteredusername
+	var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+			if (xmlhttp.readyState==2)
+			{
+			//alert("2")
+			}	  
+			 if (xmlhttp.readyState==3)
+			{
+			//alert("3")
+			} 
+			
+			
+			if (xmlhttp.readyState==4)
+				{
+				var responsetext=xmlhttp.responseText;
+					{
+					//alert("serverresponse : " + responsetext);
+					var myarray=eval('(' + xmlhttp.responseText + ')');
+					var serverusername=myarray['username']
+					<!-- take entered user name from variable enteredusername -->
+					var serverpwd=myarray["password"];
+					<!-- take entered user name from variable enteredpassword -->
+					
+					
+					var mymessage=myarray['message']
+					<!-- here message success means only the username is authenticated, we manually check password that has been retrived from the server against entered form password -->
+					
+					//alert(serverpwd + "----" + enteredpassword)
+					
+					//alert("message from server: " + mymessage);
+					if (mymessage=="success")
+					{
+						//alert("success with username")
+						//now check password match
+						if(serverpwd.trim()==enteredpassword.trim())
+						{
+							//alert("passwordmatch")
+							//since both match we move on
+							document.getElementById('userid').value=enteredusername;
+							
+							$('.success').fadeIn(200).show();
+							document.getElementById('userdetailform').submit();
+							
+						}
+						if (serverpwd.trim()!=enteredpassword.trim())
+						{
+							document.getElementById('userid').value='';
+							$('.error').fadeIn(200).show();
+						}
+					}
+					if (mymessage=="failure")
+					{
+						//alert("Failure with username")
+						$('.error').fadeIn(200).show();
+					}
+					
+					
+					
+					document.getElementById('loginform').reset();
+					
+						
+					}
+
+				}
+
+		  }
+		xmlhttp.open("GET",submitlink,true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send(dataString1);
+}	
+	
+	
+	
+
+
+
+
+
+
+
+
+
 
 <!-- quotation services ends -->
 

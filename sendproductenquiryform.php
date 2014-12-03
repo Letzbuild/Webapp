@@ -1,6 +1,5 @@
 <div class="pull-right"><i><h6>Fields with asterix are required</h6></i></div>
 <div class="clearfix"></div>
-<div id="mydiv">asdf</div>
 <div class="formouter">
 	
     <form name="productenquiryform" id="productenquiryform">

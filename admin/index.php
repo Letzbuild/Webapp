@@ -10,15 +10,8 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/admin.js"></script>
-<!-- angular scripts starts-->
-<script src= "../js/angular.min.js"></script>
-<script>
-function category($scope,$http) {
-	 $http.get("http://localhost:4567/products/categories")
-	.success(function(response) {$scope.names = response;});
-}
-</script>
-<!-- angular scripts ends-->
+
+
 </head>
 
 <body>
@@ -36,23 +29,24 @@ function category($scope,$http) {
      		<label for="username">Email ID</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              	<input name="username" type="text" class="form-control" id="username" placeholder="Email ID" maxlength="30"  mandatory="yes" >
+              	<input name="username" type="text" class="form-control" id="username"  placeholder="Email ID" maxlength="30"  mandatory="yes" >
 	            <span id="username-display"></span>
             </div>
             
             <label for="password">Password</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-              	<input name="password" type="password" class="form-control" id="password" placeholder="Password" maxlength="30"  mandatory="yes" >
+              	<input name="password" type="password" class="form-control" id="password"  placeholder="Password" maxlength="30"  mandatory="yes" >
 	            <span id="password-display"></span>
             </div>
              
           <input  type="button" class="btn btn-warning" value="Submit" class="submit" onClick="adminloginform()"/>
           
+          
           <span class="error" style="display:none">
             <div class="alert alert-danger">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <strong>Success!</strong> Form was not saved. Please try again later.
+                <strong>Error!</strong> Username and Password do not match.
             </div>
             </span>
             <span  class="success" style="display:none"> 
@@ -64,6 +58,12 @@ function category($scope,$http) {
           
           
    		 </form>
+         
+         <form name="userdetailform" id="userdetailform" action="dashboard.php" method="post">
+         	<input type="hidden" value="" name="userid" id="userid">
+         </form>
+         
+         
          </div>
          <div class="col-sm-4"></div>
 	</div>

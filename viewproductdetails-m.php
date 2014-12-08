@@ -16,14 +16,20 @@
                                      
                                      	<div class="media">
                                             <a href="#" class="pull-left">
-                                                <div class="thumbnail"><img src="images/productimages/{{subcategorydisp.name}}.jpg" class="media-object"></div>
+                                             	<div class="thumbnail"><img ng-src="images/products/{{subcategorydisp.code}}.jpg" err-SRC="images/products/noimage.jpg" class="media-object"></div>
                                             </a>
                                             <div class="media-body">
-                                            	 <h6><?php echo($subcategory) ?> > {{ subcategorydisp.name }} </h6> 
-                                                 <h2 class="media-heading">{{ subcategorydisp.name }}</h2>
+                                            	
+                                                    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+                                                        <li class="active maincontentheadinginner"><?php echo($subcategory) ?></li>
+                                                        <li class="active maincontentheadinginner">{{ subcategorydisp.name }}</li>
+                                                        
+                                                        
+                                                     </ul>
+                                                 <h3 class="media-heading">{{ subcategorydisp.name }}</h3>
                                      			 <h4>{{subcategorydisp.desc}}</h4>
-                                     			 <h3>Code: <strong>{{subcategorydisp.code }}</strong> </h3>
-                                                  <span data-placement="top" data-toggle="tooltip" title=""><a ng-href="#{{ subcategorydisp.code}}enquiry" class="btn btn-lg btn-default btn-sm" data-toggle="modal">Send Enquiry</a></span>
+                                     			 <h3>Code: <strong>{{subcategorydisp.code }}</strong> 
+                                                  <span data-placement="top" data-toggle="tooltip" title=""><a ng-href="#{{ subcategorydisp.code}}enquiry" class="btn btn-lg btn-default btn-sm pull-right" data-toggle="modal">Send Enquiry</a></span></h3>
                                                  
                                             </div>
                                         </div>
@@ -32,37 +38,52 @@
                                    
                                       <div class="modal-body">
                                          
-                                          <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h1 class="panel-title">Purpose</h1>
-                                                </div>
-                                                <div class="panel-body"  ng:repeat="child in subcategorydisp.purpose">
-                                                	<li style="padding-bottom:0px;margin:0px;">{{child}}</li>
-                                        		</div>
-                                          </div>
-                                          
-                                           <div class="panel panel-warning">
+                                          <div class="panel panel-warning">
                                                 <div class="panel-heading">
                                                     <h1 class="panel-title">Specifications</h1>
                                                 </div>
                                                 <div class="panel-body">
                                                     <strong><i><span>Unit<span class="pull-right">Measurement</span></span></i></strong>
                                                 </div>
-                                                <div class="list-group"  ng:repeat="(key, value) in subcategorydisp.specs">
+                                                <div   ng:repeat="(key, value) in subcategorydisp.specs">
                                                 	<span class="list-group-item">{{key}} <span class="pull-right"> {{value}} </span></span>
                                         		</div>
-                                          </div>                                      
+                                          </div>
+                                         
                                           <div class="panel panel-default panel-success">
                                                 <div class="panel-heading ">
-                                                    <h1 class="panel-title">Star Suppliers</h1>
+                                                   <h1 class="panel-title">Star Suppliers</h1>
                                                 </div>
-                                                <div class="panel-body">
-                                                    <strong><i><span>Supplier<span class="pull-right">Code</span></span></i></strong>
-                                                </div>
-                                                <div class="list-group"  ng:repeat="child in subcategorydisp.starSuppliers">
-                                                	<span class="list-group-item">{{child.name}}<span class="pull-right">{{child.scode}}</span></span>
+                                               
+                                                
+                                                <div class="panel-body"  ng:repeat="child in subcategorydisp.starSuppliers">
+                                                	<li style="padding:-10px;margin:-10px;">{{child.name}}</li>
                                         		</div>
+                                                <div class="panel-body">
+                                                   <a ng-href="suppliersshow.php?pcode={{ child.cat | encodeURIComponent }}" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
+                                                </div>
                                           </div> 
+                                          
+                                           <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h1 class="panel-title">Manufacturers</h1>
+                                                </div>
+                                                <div class="panel-body"  ng:repeat="child in subcategorydisp.manufacturers">
+                                                	<li style="padding:-10px;margin:-10px;">{{child}}</li>
+                                        		</div>
+                                          </div>
+                                         
+                                          <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h1 class="panel-title">Purpose</h1></span>
+                                                </div>
+                                                <div class="panel-body"  ng:repeat="child in subcategorydisp.purpose">
+                                                	<li style="padding:-10px;margin:-10px;">{{child}}</li>
+                                        		</div>
+                                          </div>
+                                          
+                                                                                
+                                         
                                    </div>
                                   
                                     <div class="modal-footer"> To close this window click anywhere on the screen or press this button

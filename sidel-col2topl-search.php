@@ -1,20 +1,21 @@
     <!-- Column 1 side bar starts-->
  	<div class="col-sm-3">
-	<a class="btn btn-danger btn-lg btn-block" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
-    <a class="btn btn-danger btn-lg btn-block" href="quotationrequest.php?linkid=bom">BOM</a>
-    <a class="btn btn-danger btn-lg btn-block" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
+	<a class="btn btn-default btn-block" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
+    <a class="btn btn-default btn-block" href="quotationrequest.php?linkid=bom">BOM</a>
+    <a class="btn btn-default btn-block" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
     </div>
+    <P class="visible-xs"><Br /></P>
     <!-- Column 1 side bar ends--> 
     
 	
   		<div class="col-sm-9"> 
      		<div class="category-tab">
-        	  <ul class="nav nav-tabs" style="margin:0px;">
-                <li style="width:33%;text-align:center"><a href="#" data-toggle="tab" >Products</a></li>
-                <li style="width:33%;text-align:center"><a href="#" data-toggle="tab">Services</a></li>
-                <li style="width:34%;text-align:center"><a href="#" data-toggle="tab">Suppliers</a></li>
-              </ul>
-            </div>
+        	     <ul class="nav nav-tabs nav-justified">
+                    <li class="<?php echo($pagetabproduct) ?>"><a href="index.php">Products</a></li>
+                    <li class="<?php echo($pagetabsuppliers) ?>"><a href="suppliers.php">Suppliers</a></li>
+                    <li class="<?php echo($pagetabservices) ?>"><a href="services.php">Services</a></li>
+                </ul>
+           </div> 
    	  	</div>
 
        <div class="col-sm-9">
@@ -25,7 +26,7 @@
 		?>
         
           
-             <br />
+           
             <div class="input-group custom-input-group">
                 
               	<input name="lastname" type="text" class="form-control" id="searchbox" placeholder="Enter Search Criteria">

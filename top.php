@@ -8,8 +8,8 @@
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +91 9543750740</a></li>
                             <li><a href="#"><i class="fa fa-envelope"></i> admin@letzbuild.com</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                            <li style="visibility:hidden"><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                         </ul>
                     </div>
                 </div>

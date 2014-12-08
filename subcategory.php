@@ -1,6 +1,8 @@
 <?php
 if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
-$showsearch="true"
+$showsearch="true";
+$pagetab="product";
+$submitlink=urlencode($subcategory);
 ?>
 <?php include('includes/sitevariables.php') ?>
 
@@ -18,9 +20,7 @@ $showsearch="true"
 <script src="js/myscript.js"></script>
 
 <!-- date picker scripts -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
   
   
 <!-- date picker ends -->
@@ -31,11 +31,33 @@ $showsearch="true"
 <script>
 function subcategory($scope,$http) {
 	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://localhost:4567/products/retrieve?cat=<?php echo($subcategory) ?>&limit=10&page=1") 
+	 $http.get("http://localhost:4567/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
 	.success(function(response) {$scope.subcategorylist = response;});
 }
 
+    var app = angular.module("MyApp", []);
+    
+    app.directive('errSrc', function() {
+      return {
+        link: function(scope, element, attrs) {
+          element.bind('error', function() {
+            if (attrs.src != attrs.errSrc) {
+              attrs.$set('src', attrs.errSrc);
+            }
+          });
+        }
+      }
+    });
 
+
+var app1 = angular.module('MyApp1', []);
+app.filter('encodeURIComponent', function() {
+    return window.encodeURIComponent;
+});
+
+
+
+	
 $('datepicker').datetimepicker({
 
         pickTime: false
@@ -49,6 +71,14 @@ $('datepicker').datetimepicker({
 
 
 </script>
+<script>
+    $(document).ready(function(){
+
+        $('[data-toggle="popover"]').popover();   
+
+    });
+
+</script>
 <!-- angular scripts ends-->
 
 </head>
@@ -56,19 +86,26 @@ $('datepicker').datetimepicker({
 <body>
 
 <?php include('top.php') ?>
-<hr>
 <div class="container">
-
-  <div class="row" style="padding-top:15px"> 
-
+   
+    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<li><a href="index.php">Sub Category</a></li>
+        <li class="active maincontentheadinginner">Product List - <strong>( <?php echo ($subcategory) ?> )</strong>
+        
+	 </ul> <div class="row" > 
+     <!-- pagination -->
+  
+  <!-- pagination ends -->
 	<?php include('sidel-col2topl-search.php') ?>
-
-      <div  ng-app="" ng-controller="subcategory">
+	<div ng-app1="MyApp1">
+      <div  ng-app="MyApp" ng-controller="subcategory">
         <div  ng:repeat="subcategorydisp in subcategorylist">
           <div class="col-sm-4">
-     
+     		
           	 	<div class="thumbnail">
-                    <img src="images/productimages/{{subcategorydisp.name}}.jpg" alt="{{subcategorydisp.name}}">
+                    
+                    <img ng-src="images/products/{{subcategorydisp.code}}.jpg" err-SRC="images/products/noimage.jpg" />
+                    
                     <div class="caption">
                         <h3>{{subcategorydisp.name}}</h3>
                         <p>Code: <strong>{{subcategorydisp.code}}</strong></p>
@@ -88,6 +125,7 @@ $('datepicker').datetimepicker({
          </div>
        </div>
      </div>
+     </div><!--myapp1 ends -->
      </div> <!-- this div ends the column sm 9 from the include file side-col2... -->
   </div>
 </div>

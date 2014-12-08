@@ -10,10 +10,16 @@
                                      
                                      	<div class="media">
                                             <div class="media-body">
-                                            	<h2>Enquiry Form</h2>
+                                            	 <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+                                                        <li class="active maincontentheadinginner"><?php echo($subcategory) ?> </li>
+                                                        <li class="active maincontentheadinginner">{{ subcategorydisp.name }}</li>
+                                                        <li class="active maincontentheadinginner">Send Equiry</li>
+                                                 </ul>
                                             	 
-                                                 <h2 class="media-heading">{{ subcategorydisp.name }}</h2>
-                                     			 <h6><?php echo($subcategory) ?> > {{ subcategorydisp.name }} > Send Enquiry Form</h6> 
+                                                 <h3 class="media-heading">{{ subcategorydisp.name }}</h3>
+                                     			
+                                                
+                                                 
                                                  <h4>{{subcategorydisp.desc}}</h4>
                                      			 <h3>Code: <strong>{{subcategorydisp.code }}</strong> </h3>
                                                  

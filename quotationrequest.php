@@ -1,11 +1,12 @@
 <?php 
+$pagetab="";
 $showsearch="false";
 //get links
 if (empty($_GET['linkid'])) {$linkid='';} else {$linkid=$_GET["linkid"]; }
 if ($linkid=="quotationrequest")
 {
 	$submitlink="http://localhost:4567/enquiries/qs/add";
-	$displaytext="Quotation Services";
+	$displaytext="Quotation Request";
 }
 if ($linkid=="bom")
 {
@@ -37,17 +38,14 @@ if ($linkid=="procurementmanagement")
 
 <body>
 <?php include('top.php') ?>
-<hr>
 <div class="container">
-  <div class="row" style="padding-top:15px"> 
+    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+        <li class="active maincontentheadinginner"><?php echo($displaytext) ?>
+ </ul> <div class="row" > 
 
 	<?php include('sidel-col2topl-search.php') ?> <!-- there is a div with col-sm-9 inside the include -->
-     <h2><?php echo($displaytext) ?></h2>
-     <ul class="breadcrumb">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#"><?php echo($displaytext) ?></a></li>
-     </ul>
-    	
+     
+   	
 	<div class="formouter" >	
     <form name="quotationservices" id="quotationservices" action="<?php echo($submitlink) ?>" method="post">
 

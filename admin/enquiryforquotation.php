@@ -6,11 +6,10 @@
 <link rel="shortcut icon" href="../favicon.ico" />
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/main.css">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/admin.js"></script>
-<script src= "../js/angular.min.js"></script>
 <script src= "../js/angular.min.js"></script>
 <script>
 function enquiryform($scope,$http) {
@@ -28,9 +27,9 @@ function enquiryform($scope,$http) {
 
 <div class="col-sm-12" >
 	<h3>Quotation Request Enquiry List</h3>
-    <ul class="breadcrumb breadcrumb-spacetop" "><i>You are here: </i>
-        <li><a href="#">Enquiry</a></li>
-        <li  class="active">Quotation Request Enquiry</li>
+    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading">You are here:</span>
+        <li class="active maincontentheadinginner">Enquiries</li>
+        <li class="active maincontentheadinginner">Quaotation Request Enquiry</li>
 	 </ul>
      <!-- display starts -->
      <div  ng-app="" ng-controller="enquiryform">
@@ -48,7 +47,7 @@ function enquiryform($scope,$http) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<a >
+                                	
                                    <tr ng:repeat="entry in enquirylist" ng-href="#{{ entry.enqno }}" data-toggle="modal" style="cursor:pointer">
                                     <td>{{entry.enqno}}</td>
                                     <td>{{entry.fname}}&nbsp;{{entry.lname}}</td>
@@ -56,7 +55,7 @@ function enquiryform($scope,$http) {
                                     <td>{{entry.loc}}</td>
                                     <td>{{entry.mobile}}</td>
                                     </tr>
-                                    </a>
+                                   
                                     
                                 </tbody>
                             </table>                           

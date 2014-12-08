@@ -6,7 +6,7 @@
 <link rel="shortcut icon" href="../favicon.ico" />
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/main.css">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/admin.js"></script>

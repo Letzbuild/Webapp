@@ -14,4 +14,34 @@ $productenquirynumber="pr".$randomkey;
 $quotationservicesenquirynumber="qs".$randomkey;
 $bomenquirynumber="bm".$randomkey;
 $procurementmanagementenquirynumber="pm".$randomkey;
+
+
+/*page tabs*/
+if ($pagetab=="product")
+{
+	$pagetabproduct="active";
+}
+else
+{
+	$pagetabproduct="";
+}
+
+if ($pagetab=="suppliers")
+{
+	$pagetabsuppliers="active";
+}
+else
+{
+	$pagetabsuppliers="";
+}
+if ($pagetab=="services")
+{
+	$pagetabservices="active";
+}else
+{
+	$pagetabservices="";
+}
+
+
+
 ?>

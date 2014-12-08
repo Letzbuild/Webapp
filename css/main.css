@@ -8,6 +8,11 @@
 {
     background: #f47115;
 }
+.adminheader{
+	background-color:#CCC;
+	padding-top:5px;
+	padding-bottom:5px;
+}
 
 .modal .modal-body {
     
@@ -20,9 +25,34 @@ margin:0px 20px 0px 20px
 .custom-input-group{
 	padding-bottom:20px;
 }
-
-
-
+.divspacetop{
+	padding-top:20px;
+}
+.breadcrumb-spacetop{
+	margin:0px;
+}
+.maincontentheading{
+	color:#333333;
+	font-size:14px;
+	font-style:italic;
+	font-weight:300;
+	margin:0px;
+}
+.maincontentheadinginner{
+	color:#999999;
+	font-size:14px;
+	
+}
+.navtab-margin
+{
+	margin:0px;
+}
+.displayheading
+{
+	font-size:16px;
+	color:#999999;
+	
+}
 /* customized css ends*/
 .superclass{
 	color:red;
@@ -524,7 +554,7 @@ h2.title:before{
 }
 
 .category-tab ul  li  a:hover{
-	background:#FE980F;
+	background:#cccccc;
 	color:#fff;
 }
 /* category tabs or links inside column 2 ends */

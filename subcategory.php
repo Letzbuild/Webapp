@@ -1,9 +1,19 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php
 if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
 $showsearch="true";
 $pagetab="product";
 $submitlink=urlencode($subcategory);
+include('includes/sitevariables.php');
+
+$myserverlink="http://$serverlink/enquiries/product/add";
+
+
+
+
+
 ?>
+
 <?php include('includes/sitevariables.php') ?>
 
 <!DOCTYPE html>
@@ -20,7 +30,9 @@ $submitlink=urlencode($subcategory);
 <script src="js/myscript.js"></script>
 
 <!-- date picker scripts -->
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   
   
 <!-- date picker ends -->
@@ -31,7 +43,7 @@ $submitlink=urlencode($subcategory);
 <script>
 function subcategory($scope,$http) {
 	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://localhost:4567/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
+	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
 	.success(function(response) {$scope.subcategorylist = response;});
 }
 
@@ -71,14 +83,7 @@ $('datepicker').datetimepicker({
 
 
 </script>
-<script>
-    $(document).ready(function(){
 
-        $('[data-toggle="popover"]').popover();   
-
-    });
-
-</script>
 <!-- angular scripts ends-->
 
 </head>
@@ -104,7 +109,7 @@ $('datepicker').datetimepicker({
      		
           	 	<div class="thumbnail">
                     
-                    <img ng-src="images/products/{{subcategorydisp.code}}.jpg" err-SRC="images/products/noimage.jpg" />
+                    <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" />
                     
                     <div class="caption">
                         <h3>{{subcategorydisp.name}}</h3>

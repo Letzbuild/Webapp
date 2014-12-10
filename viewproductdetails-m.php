@@ -16,7 +16,7 @@
                                      
                                      	<div class="media">
                                             <a href="#" class="pull-left">
-                                             	<div class="thumbnail"><img ng-src="images/products/{{subcategorydisp.code}}.jpg" err-SRC="images/products/noimage.jpg" class="media-object"></div>
+                                             	<div class="thumbnail"><img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" class="media-object"></div>
                                             </a>
                                             <div class="media-body">
                                             	
@@ -42,9 +42,7 @@
                                                 <div class="panel-heading">
                                                     <h1 class="panel-title">Specifications</h1>
                                                 </div>
-                                                <div class="panel-body">
-                                                    <strong><i><span>Unit<span class="pull-right">Measurement</span></span></i></strong>
-                                                </div>
+                                                
                                                 <div   ng:repeat="(key, value) in subcategorydisp.specs">
                                                 	<span class="list-group-item">{{key}} <span class="pull-right"> {{value}} </span></span>
                                         		</div>

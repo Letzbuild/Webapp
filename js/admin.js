@@ -91,9 +91,10 @@ if (errtype=='finished')
 
 
 function checklogin(enteredusername,enteredpassword)
-{
-	var submitlink="http://localhost:4567/users/"
-	submitlink=submitlink + enteredusername
+{	
+	var mysubmitlink=document.getElementById('submitlink').value;
+	//var submitlink="http://<?php echo($serverlink) ?>/users/"
+	submitlink=mysubmitlink + enteredusername
 
 	var dataString1 = 'username='+ enteredusername
 	var xmlhttp;

@@ -29,7 +29,7 @@ app.filter('encodeURIComponent', function() {
 
 <script>
 function category($scope,$http) {
-	 $http.get("http://localhost:4567/products/categories")
+	 $http.get("http://<?php echo($serverlink) ?>/products/categories")
 	.success(function(response) {$scope.names = response;});
 }
 
@@ -93,7 +93,7 @@ function category($scope,$http) {
                     	<div class="panel panel-default"><div class="panel-heading">Products<span class="pull-right">Total Suppliers</span></div>
                             <div class="panel-body">
                             <div ng:repeat="child in x.subCats">
-                                <a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.suppCnt}}</span>
+                               <a  href="suppliersshow.php?pcode={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.suppCnt}}</span>
                             </div>
                             </div>
                     	</div>

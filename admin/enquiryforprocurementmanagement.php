@@ -13,7 +13,7 @@
 <script src= "../js/angular.min.js"></script>
 <script>
 function enquiryform($scope,$http) {
-	 $http.get("http://localhost:4567/enquiries/pms/retrieve")
+	 $http.get("http://<?php echo($serverlink) ?>/enquiries/pms/retrieve")
 	.success(function(response) {$scope.enquirylist = response;});
 }
 </script>

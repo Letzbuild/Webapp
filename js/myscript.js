@@ -281,6 +281,7 @@ var anyspecialinstruction = $("#anyspecialinstruction").val();
 
 var enquirynumber = $("#enquirynumber").val();
 var productcode = $("#productcode").val();
+var serverlink = $("#serverlink").val();
 
 fieldcoloranderrormessage("firstname","","red","finished");
 fieldcoloranderrormessage("lastname","","red","finished");
@@ -406,18 +407,20 @@ if (errtype=='finished')
 		  {
 			if (xmlhttp.readyState==2)
 			{
-			//alert("2");
+			var responsetext=xmlhttp.responseText;
+			//alert("2: " + responsetext)
 			}	  
 			 if (xmlhttp.readyState==3)
 			{
-			//alert("3");
+			var responsetext=xmlhttp.responseText;
+			//alert("3: " + responsetext)
 			} 
 			
 			
 			if (xmlhttp.readyState==4)
 				{
 				var responsetext=xmlhttp.responseText;
-				//alert(responsetext)
+				//alert("4: " + responsetext)
 				if (responsetext=='"success"')
 					{
 					document.getElementById('productenquiryform').reset();
@@ -432,7 +435,8 @@ if (errtype=='finished')
 				}
 
 		  }
-		xmlhttp.open("POST","http://localhost:4567/enquiries/product/add",true);
+		xmlhttp.open("POST",serverlink,true);
+		//xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send(dataString);
 
@@ -450,3 +454,189 @@ countfield.value = maxlimit - field.value.length;
 }
 
 
+function supplierenquiry()
+{
+var msg=''
+var errtype='finished';
+alert("entered");
+var firstname = $("#firstname").val();
+var lastname = $("#lastname").val();
+var organisation = $("#organisation").val();
+var mobilenumber = $("#mobilenumber").val();
+var email = $("#email").val();
+var quantity = $("#quantity").val();
+
+var e = document.getElementById("specification");
+var specification = e.options[e.selectedIndex].value;
+
+var subject = $("#subject").val();
+var datepicker = $("#datepicker").val();
+var budget = $("#budget").val();
+var deliverylocation = $("#deliverylocation").val();
+var frequency = $("#frequency").val();
+var reasonforpurchase = $("#reasonforpurchase").val();
+var anyspecialinstruction = $("#anyspecialinstruction").val();
+
+var enquirynumber = $("#enquirynumber").val();
+var productcode = $("#suppliercode").val();
+var serverlink = $("#serverlink").val();
+
+fieldcoloranderrormessage("firstname","","red","finished");
+fieldcoloranderrormessage("lastname","","red","finished");
+fieldcoloranderrormessage("organisation","","red","finished");
+fieldcoloranderrormessage("mobilenumber","","red","finished");
+fieldcoloranderrormessage("email","","red","finished");
+fieldcoloranderrormessage("quantity","","red","finished");
+fieldcoloranderrormessage("specification","","red","finished");
+fieldcoloranderrormessage("subject","","red","finished");
+fieldcoloranderrormessage("datepicker","","red","finished");
+fieldcoloranderrormessage("budget","","red","finished");
+fieldcoloranderrormessage("deliverylocation","","red","finished");
+fieldcoloranderrormessage("frequency","","red","finished");
+fieldcoloranderrormessage("reasonforpurchase","","red","finished");
+fieldcoloranderrormessage("anyspecialinstruction","","red","finished");
+
+
+if (firstname=='')
+	{
+		fieldcoloranderrormessage("firstname","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (lastname=='')
+	{
+		fieldcoloranderrormessage("lastname","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (organisation=='')
+	{
+		fieldcoloranderrormessage("organisation","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (mobilenumber=='')
+	{
+		fieldcoloranderrormessage("mobilenumber","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (email=='')
+	{
+		fieldcoloranderrormessage("email","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+		
+if (quantity=='')
+	{
+		fieldcoloranderrormessage("quantity","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (specification=="none" )
+	{
+		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (subject=='')
+	{
+		fieldcoloranderrormessage("subject","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+			
+if (datepicker=='')
+	{
+		fieldcoloranderrormessage("datepicker","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+	
+if (budget=='')
+	{
+		fieldcoloranderrormessage("budget","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+			
+if (deliverylocation=='')
+	{
+		fieldcoloranderrormessage("deliverylocation","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+	
+if (frequency=='')
+	{
+		fieldcoloranderrormessage("frequency","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+	
+if (reasonforpurchase=='')
+	{
+		fieldcoloranderrormessage("reasonforpurchase","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (anyspecialinstruction=='')
+	{
+		fieldcoloranderrormessage("anyspecialinstruction","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
+if (errtype=='unfinished')
+	{
+		//alert('Some information is Missing In Fields. These Fields Are Mandatory.' + '\n' + msg)
+	}
+if (errtype=='finished')
+	{
+		
+		
+		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&scode=' + productcode;
+		
+		
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		xmlhttp.onreadystatechange=function()
+		  {
+			if (xmlhttp.readyState==2)
+			{
+			var responsetext=xmlhttp.responseText;
+			//alert("2: " + responsetext)
+			}	  
+			 if (xmlhttp.readyState==3)
+			{
+			var responsetext=xmlhttp.responseText;
+			//alert("3: " + responsetext)
+			} 
+			
+			
+			if (xmlhttp.readyState==4)
+				{
+				var responsetext=xmlhttp.responseText;
+				//alert("4: " + responsetext)
+				if (responsetext=='"success"')
+					{
+					document.getElementById('supplierenquiryform').reset();
+					 $('.success').fadeIn(200).show();
+					} 
+				if (responsetext=='"failure"')
+					{
+					
+					document.getElementById('supplierenquiryform').reset();
+					$('.error').fadeIn(200).show();
+					} 
+				}
+
+		  }
+		xmlhttp.open("POST",serverlink,true);
+		//xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send(dataString);
+
+	}		
+}

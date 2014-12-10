@@ -27,7 +27,7 @@ $submitlink=urlencode($subcategory);
 <script>
 function subcategory($scope,$http) {
 	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://localhost:4567/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
+	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
 	.success(function(response) {$scope.subcategorylist = response;});
 }
 
@@ -61,7 +61,7 @@ function subcategory($scope,$http) {
 			<div class="col-sm-4">
      		
           	 	<div class="thumbnail">
-                    <img ng-src="images/products/{{subcategorydisp.code}}.jpg" err-SRC="images/products/noimage.jpg" />
+                    <img ng-src="images/productimages/{{subcategorydisp.code}}.jpg" err-SRC="images/productimages/noimage.jpg" />
                    
                     	
 

@@ -1,3 +1,9 @@
+<?php
+$pagetab="";
+ include('../includes/sitevariables.php');
+ $submitlink="http://$serverlink/users/";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +47,7 @@
             </div>
              
           <input  type="button" class="btn btn-warning" value="Submit" class="submit" onClick="adminloginform()"/>
-          
+           <input type="hidden" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
           
           <span class="error" style="display:none">
             <div class="alert alert-danger">

@@ -1,6 +1,7 @@
 <?php
 $pagetab="product";
  $showsearch="true";
+ 
  include('includes/sitevariables.php');
  ?>
 
@@ -28,7 +29,7 @@ app.filter('encodeURIComponent', function() {
 
 <script>
 function category($scope,$http) {
-	 $http.get("http://localhost:4567/products/categories")
+	 $http.get("http://<?php echo($serverlink) ?>/products/categories")
 	.success(function(response) {$scope.names = response;});
 }
 

@@ -1,5 +1,5 @@
 <?php
-session_start();    
+   
 $sessionid=(session_id());
 $uniqueid=(uniqid());
 
@@ -10,11 +10,15 @@ for($i = 0; $i <= 6; $i++){
 	
     $randomkey .= $combinedkey[rand(0, strlen($combinedkey)-1)];
 }
+$supplierenquirynumber="sp".$randomkey;
 $productenquirynumber="pr".$randomkey;
 $quotationservicesenquirynumber="qs".$randomkey;
 $bomenquirynumber="bm".$randomkey;
 $procurementmanagementenquirynumber="pm".$randomkey;
 
+/*server link*/
+//$serverlink="117.218.227.143";
+$serverlink="localhost:4567";
 
 /*page tabs*/
 if ($pagetab=="product")

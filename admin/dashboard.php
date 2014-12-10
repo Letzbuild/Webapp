@@ -17,7 +17,7 @@ include('adminvariables.php')
 <script src= "../js/angular.min.js"></script>
 <script>
 function category($scope,$http) {
-	 $http.get("http://localhost:4567/products/categories")
+	 $http.get("http://<?php echo($serverlink) ?>/products/categories")
 	.success(function(response) {$scope.names = response;});
 }
 </script>

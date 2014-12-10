@@ -43,7 +43,7 @@ if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["su
 <script>
 function subcategory($scope,$http) {
 	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://localhost:4567/products/retrieve?cat=<?php echo($subcategory) ?>&limit=10&page=1") 
+	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?cat=<?php echo($subcategory) ?>&limit=10&page=1") 
 	.success(function(response) {$scope.subcategorylist = response;});
 }
 

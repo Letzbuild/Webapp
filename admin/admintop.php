@@ -11,6 +11,7 @@
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Enquiries <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="enquiryforproduct.php">Product</a></li>
+                <li><a href="enquiryforsupplier.php">Supplier</a></li>
                  <li class="divider"></li>
                 <li><a href="enquiryforquotation.php">Quotation Request</a></li>
                 <li><a href="enquiryforbom.php">Bill Of Material</a></li>

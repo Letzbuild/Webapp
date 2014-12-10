@@ -45,7 +45,7 @@
 							   $(function() {
 							   $( "#datepicker" ).datepicker({ minDate: 0, maxDate: "+6M" });
 								$( "#datepicker" ).datepicker({changeMonth: true, changeYear: true});
-								$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+								$( "#datepicker" ).datepicker( "option", "dateFormat", "dd-mm-yy" );
 								$( "#datepicker" ).datepicker( "option", "showAnim","fold" );
 								
 							   

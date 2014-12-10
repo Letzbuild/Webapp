@@ -1,25 +1,28 @@
 <?php 
+
 $pagetab="";
 $showsearch="false";
+include('includes/sitevariables.php');
+
 //get links
 if (empty($_GET['linkid'])) {$linkid='';} else {$linkid=$_GET["linkid"]; }
 if ($linkid=="quotationrequest")
 {
-	$submitlink="http://localhost:4567/enquiries/qs/add";
+	$submitlink="http://$serverlink/enquiries/qs/add";
 	$displaytext="Quotation Request";
 }
 if ($linkid=="bom")
 {
-	$submitlink="http://localhost:4567/enquiries/bom/add";
+	$submitlink="http://$serverlink/enquiries/bom/add";
 	$displaytext="Bill Of Material (BOM)";
 }
 if ($linkid=="procurementmanagement")
 {
-	$submitlink="http://localhost:4567/enquiries/pms/add";
+	$submitlink="http://$serverlink/enquiries/pms/add";
 	$displaytext="Procurement Management";
 }
 ?>
-<?php include('includes/sitevariables.php') ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +121,7 @@ if ($linkid=="procurementmanagement")
             <strong>Success!</strong> Form was saved successfully. Please check your email for details.
         </div>
         </span>
-	 <input type="hidden" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
+	 <input type="text" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
      <input type="hidden" value="<?php echo($productenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
     </form>
     </div>

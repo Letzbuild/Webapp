@@ -135,6 +135,7 @@
        </span>
        <input type="hidden" value="<?php echo($productenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
        <input type="hidden" value="<?php echo($subcategory) ?>" name="productcode" id="productcode">
+       <input type="text" value="<?php echo($myserverlink) ?>" name="serverlink" id="serverlink" />
        
        
     </form>

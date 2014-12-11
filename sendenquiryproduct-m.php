@@ -22,6 +22,7 @@
                                                  
                                                  <h4>{{subcategorydisp.desc}}</h4>
                                      			 <h3>Code: <strong>{{subcategorydisp.code }}</strong> </h3>
+                                                 <input type="hidden" value="{{subcategorydisp.code }}" name="productcode" id="productcode">
                                                  
                                             </div>
                                         </div>

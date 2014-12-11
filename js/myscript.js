@@ -478,7 +478,10 @@ var reasonforpurchase = $("#reasonforpurchase").val();
 var anyspecialinstruction = $("#anyspecialinstruction").val();
 
 var enquirynumber = $("#enquirynumber").val();
-var productcode = $("#suppliercode").val();
+var suppliercode = $("#suppliercode").val();
+var suppliername = $("#suppliername").val();
+var productcode = $("#productcode").val();
+
 var serverlink = $("#serverlink").val();
 
 fieldcoloranderrormessage("firstname","","red","finished");
@@ -589,7 +592,7 @@ if (errtype=='finished')
 	{
 		
 		
-		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&scode=' + productcode;
+		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&scode=' + suppliercode + '&suppliername=' + suppliername + '&pcode=' + productcode;
 		
 		
 		var xmlhttp;

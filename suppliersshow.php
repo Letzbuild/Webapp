@@ -74,9 +74,9 @@ app.filter('encodeURIComponent', function() {
       <div ng-app="MyApp" ng-controller="subcategory">
         <div  ng:repeat="subcategorydisp in subcategorylist">
                 <!-- panel starts -->
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-warning">
              				 
-                        <div class="panel-heading" style="margin-bottom:15px">
+                        <div class="panel-heading " style="margin-bottom:15px">
                         	{{subcategorydisp._id.sname}}
                             <a href="supplierdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}" class="btn btn-default btn-sm btn-default  buttonspacebottom">View Supplier Details</a>
                         </div>

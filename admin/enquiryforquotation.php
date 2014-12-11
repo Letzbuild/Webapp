@@ -1,3 +1,10 @@
+<?php
+ $pagetab="";
+ $showsearch="false";
+ include('../includes/sitevariables.php');
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

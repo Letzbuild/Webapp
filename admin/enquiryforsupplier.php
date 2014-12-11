@@ -1,3 +1,9 @@
+<?php
+ $pagetab="";
+ $showsearch="false";
+ include('../includes/sitevariables.php');
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +45,7 @@ function enquiryform($scope,$http) {
 							 <Br><table class="table table-striped table-hover table-condensed">
                                 <thead>
                                     <tr class="warning">
+                                        <th>Supplier Name</th>
                                         <th>Customer Name</th>
                                         <th>Product</th>
                                         <th>Enquiry Number</th>
@@ -50,6 +57,7 @@ function enquiryform($scope,$http) {
                                 <tbody>
                                 	<a >
                                    <tr ng:repeat="entry in enquirylist" ng-href="#{{ entry.enqno }}" data-toggle="modal" style="cursor:pointer">
+                                    <td>{{entry.sname}}</td>
                                     <td>{{entry.fname}}&nbsp;{{entry.lname}}</td>
                                     <td>{{entry.pcode}}</td>
                                     <td>{{entry.enqno}}</td>
@@ -72,7 +80,7 @@ function enquiryform($scope,$http) {
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h4 class="modal-title">Product Enquiry <small>for product </small> {{ entry.pcode }}</h4>
+                                      <h4 class="modal-title"> Enquiry For Supplier <small>for product </small> {{ entry.pcode }}</h4>
                                       
                                       <h5>Enquiry Number:  <strong>{{ entry.enqno }}</strong></h6>
                                       <h5>Enquiry Created On:  <strong>{{ entry.enqDate }}</strong></h6>
@@ -82,6 +90,7 @@ function enquiryform($scope,$http) {
                                       
                                         <div class="table-responsive"> 
 							 			<table class="table table-striped table-hover table-condensed">
+                                        <tr><td>Supplier Enquiry For</td><td>{{entry.sname}}</td></tr>
                                         <tr><td>Customer Name</td><td>{{entry.fname}}&nbsp;{{entry.lname}}</td></tr>
                                         <tr><td>Organisation</td><td>{{entry.org}}</td></tr>
                                         <tr><td>Mobile Number</td><td>{{entry.mobile}}</td></tr>

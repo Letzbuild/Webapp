@@ -121,7 +121,7 @@ if ($linkid=="procurementmanagement")
             <strong>Success!</strong> Form was saved successfully. Please check your email for details.
         </div>
         </span>
-	 <input type="text" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
+	 <input type="hidden" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
      <input type="hidden" value="<?php echo($productenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
     </form>
     </div>

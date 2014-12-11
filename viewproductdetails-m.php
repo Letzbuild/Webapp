@@ -58,7 +58,8 @@
                                                 	<li style="padding:-10px;margin:-10px;">{{child.name}}</li>
                                         		</div>
                                                 <div class="panel-body">
-                                                   <a ng-href="suppliersshow.php?pcode={{ child.cat | encodeURIComponent }}" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
+                                                   
+                                                   <a ng-href="suppliersforproduct.php?pcode={{ subcategorydisp.code | encodeURIComponent }}&pname={{ subcategorydisp.name | encodeURIComponent }}" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
                                                 </div>
                                           </div> 
                                           

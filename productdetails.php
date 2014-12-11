@@ -93,6 +93,7 @@ app.filter('encodeURIComponent', function() {
                     <p>{{subcategorydisp.desc}}.</p>
                     <h3>Code: {{subcategorydisp.code}} </h3>
                     <a href="supplierenquiryform.php?scode=<?php echo($scode) ?>&sname=<?php echo($sname) ?>&pcode=<?php echo($pcode) ?>" class="btn btn-default btn-sm  btn-warning">Send Supplier Enquiry</a>
+                     <a ng-href="suppliersforproduct.php?pcode=<?php echo ($pcode) ?>&pname=<?php echo ($pname) ?>" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
                 </div>
             </div>                
               <div class="clearfix"></div>   

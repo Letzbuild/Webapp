@@ -1,13 +1,14 @@
 <?php
 if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
+if (empty($_GET['frompage'])) {$frompage='';} else {$frompage=$_GET["frompage"]; }
 
 $showsearch="false";
 $pagetab="suppliers";
 //echo($scode);
-//echo($sname);
+//echo($frompage);
 $submitlink=urlencode($scode);
- 
+
 include('includes/sitevariables.php');
 
 ?>
@@ -68,12 +69,29 @@ app.filter('encodeURIComponent', function() {
 
 <?php include('top.php') ?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+	<?php
+	if ($frompage=='products')
+	{
+	?>
+		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<li><a href="index.php">Sub Category</a></li>
+        <li><a href="javascript:window.history.go(-2)">Products List</a></li>
+        <li><a href="javascript:window.history.go(-1)">Products Suppliers</a></li>
+       <li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
+	  </ul> 
+	<?php
+    }
+	else
+	{
+	?>
+    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
     	<li><a href="suppliers.php">Supplier</a></li>
         <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
          <li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
-        
-	 </ul> 
+         </ul> 
+     <?php
+	}
+	?>
    <div class="row" > 
 
 	<?php include('sidel-col2topl-search.php') ?>

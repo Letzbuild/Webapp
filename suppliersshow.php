@@ -77,7 +77,7 @@ app.filter('encodeURIComponent', function() {
                 <div class="panel panel-default panel-warning">
              				 
                         <div class="panel-heading " style="margin-bottom:15px">
-                        	{{subcategorydisp._id.sname}}
+                        	{{subcategorydisp._id.sname}}  <strong>(Rating: {{subcategorydisp._id.rating}} / 5) </strong>
                             <a href="supplierdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}" class="btn btn-default btn-sm btn-default  buttonspacebottom">View Supplier Details</a>
                         </div>
                         <div ng:repeat="products in subcategorydisp._id.prods" class="col-sm-4">
@@ -86,8 +86,9 @@ app.filter('encodeURIComponent', function() {
                         	
                             <div class="thumbnail ">
                             	
-                                <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" />
+                                <img ng-src="images/productimages/{{products._id.purl}}" err-SRC="images/productimages/noimage.jpg" />
                                 <div class="caption">
+                              
                                     <h3>{{products._id.pname}}</h3>
                                     <p>Code: {{products._id.pcode}}</p>
                                     

@@ -105,7 +105,7 @@ app.filter('encodeURIComponent', function() {
                 <div class="media-body">
                     <span class="list-group-item list-group-item-warning">
                 		<span class="glyphicon glyphicon-user contactglyphfont" ></span> <span class="contactspace"> Supplier Name: <strong>{{subcategorylist.name}}</strong> </span>&nbsp;&nbsp;
-                        <span class="glyphicon glyphicon-barcode contactglyphfont" ></span> <span class="contactspace"> Supplier Code: <strong>{{subcategorylist.code}}</strong> </span>
+                        <span class="glyphicon glyphicon-barcode contactglyphfont" ></span> <span class="contactspace"> Rating: <strong>{{subcategorylist.rating}} / 5</strong> </span>
 		            </span>
                    
                 </div>
@@ -124,33 +124,21 @@ app.filter('encodeURIComponent', function() {
                 <span class="glyphicon glyphicon-envelope contactglyphfont" ></span><span class="contactspace"> Email: <a href="mailto:{{subcategorylist.email}}">{{subcategorylist.email}}</a> </span>
             </span>
             <span class="list-group-item list-group-item-warning">
-                <span class="glyphicon glyphicon-phone contactglyphfont" ></span><span class="contactspace"> Mobile: {{subcategorylist.mobile}} </span>
+                <span class="glyphicon glyphicon-phone contactglyphfont" ></span><span class="contactspace"> Phone: 
+                 <span ng:repeat="child in subcategorylist.phone">
+               		 {{child}} /
+                  </span>
+                
+                </span>
             </span>
+            
+            <span class="list-group-item list-group-item-warning">
+                <span class="glyphicon glyphicon-envelope contactglyphfont" ></span><span class="contactspace"> Address: {{subcategorylist.address}} </span>
+            </span>
+            
+            
         	</div>  									
              
-             									<!--<table class="table table-responsive  table-striped">
-                                                    <tbody>
-                                                        <tr class="warning">
-                                                            <td><span class="glyphicon glyphicon-user contactglyphfont" ></span> Contact Person: </td>
-                                                            <td>{{subcategorylist.contact.fname}} {{subcategorylist.contact.lname}}</td>
-
-                                                        </tr>
-                                                        <tr class="success">
-                                                            <td><span class="glyphicon glyphicon-flag contactglyphfont" ></span> City: </td>
-                                                            <td>{{subcategorylist.city}}</td>
-														</tr>
-                                                        <tr class="info">
-                                                            <td><span class="glyphicon glyphicon-envelope contactglyphfont" ></span> Email: </td>
-                                                            <td>{{subcategorylist.email}}</td>
-														</tr>
-                                                        <tr class="info">
-                                                            <td><span class="glyphicon glyphicon-earphone contactglyphfont" ></span> Mobile: </td>
-                                                            <td>{{subcategorylist.mobile}}</td>
-														</tr>
-	                                                </tbody>
-                                                 </table>     -->                            
-                
-       
         
        
      </div><!-- controller ends -->

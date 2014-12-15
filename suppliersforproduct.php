@@ -78,7 +78,7 @@ app.filter('encodeURIComponent', function() {
         <div  ng:repeat="subcategorydisp in subcategorylist | limitTo:1">
                 <div class="media">
                     <a href="#" class="pull-left">
-                        <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
+                        <img ng-src="images/productimages/{{subcategorydisp._id.purl}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{subcategorydisp._id.pname}}</h4>

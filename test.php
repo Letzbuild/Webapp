@@ -1,76 +1,117 @@
 <?php
-if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
-$showsearch="true";
 $pagetab="product";
-$submitlink=urlencode($subcategory);
-?>
-<?php include('includes/sitevariables.php') ?>
+ $showsearch="true";
+ 
+ include('includes/sitevariables.php');
+ ?>
 
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LetzBuild</title>
+
 <link rel="shortcut icon" href="favicon.ico" />
+
+<!-- bootstrap files -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link href="css/font-awesome.min.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/myscript.js"></script>
+<!-- bootstrap files ends-->
 
 
+<link rel="stylesheet" href="css/main.css">
 
-
-<!-- angular scripts starts-->
+<!-- angular js files -->
 <script src= "js/angular.min.js"></script>
+<!-- angular js files ends -->
+
+
+
 <script>
-function subcategory($scope,$http) {
-	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
-	.success(function(response) {$scope.subcategorylist = response;});
+function category($scope,$http) {
+	 $http.get("http://<?php echo($serverlink) ?>/products/categories")
+	.success(function(response) {$scope.names = response;});
 }
-
-
-    var app = angular.module("MyApp", []);
-    
-    app.directive('errSrc', function() {
-      return {
-        link: function(scope, element, attrs) {
-          element.bind('error', function() {
-            if (attrs.src != attrs.errSrc) {
-              attrs.$set('src', attrs.errSrc);
-            }
-          });
-        }
-      }
-    });
-
-
-
-
 </script>
-</head>
 
+
+
+</head>
 <body>
 
+<?php include('top.php') ?>
 
-		
-      <div  ng-app="MyApp" ng-controller="subcategory">
-        <div  ng:repeat="subcategorydisp in subcategorylist">
-			<div class="col-sm-4">
-     		
-          	 	<div class="thumbnail">
-                    <img ng-src="images/productimages/{{subcategorydisp.code}}.jpg" err-SRC="images/productimages/noimage.jpg" />
-                   
-                    	
+<div class="container">
+    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+        <li class="active maincontentheadinginner">Category and Sub Category - <span style="cursor:pointer" class="badge" data-toggle="popover" data-placement="top" title="Category" data-content="Total no of Products shown against each subcategory under that category. Click to view all products for that sub category.">info</span></li>
+	 </ul> <div class="row" > 
+   
+	<?php 
+	include('sidel-col2topl-search.php');
+	?>
 
-               </div>
-       		</div>
-        
-       </div>
-     </div>
 
+  <div ng-app="app">
+  	  <div  ng-app="" ng-controller="category">
+            <div  ng:repeat="x in names ">
+              <div class="col-sm-4">
+               
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title" >{{ x.category}}<!--<span class="badge pull-right" >{{ x.cnt }}</span>--></h4>
+                 
+                  </div>
+                  <div class="panel-body">
+                  <div ng:repeat="child in x.subCats | limitTo:5">
+                  		<li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
+                   </div>
+                </div>
+                
+                  	<div ng-show="x.subCats.length > 5">
+                    	<a href="#{{ x._id }}" class="btn btn-lg btn-warning btn-sm" data-toggle="modal">View More</a> 
+                    </div>
+
+              <!-- Modal HTML starts--> 
+			  <div id="{{ x._id }}" class="modal fade">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">{{ x.category }} </h4>
+                      <h6>List of Subcategories for category <strong>{{ x.category }}</strong></h6>
+                    </div>
+                    <div class="modal-body">
+                      <div ng:repeat="child in x.subCats">
+                        <li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
+                      </div>
+                    </div>
+                    <div class="modal-footer"> To close this window click anywhere on the screen or press this button
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </div>
+              <!-- Modal HTML ends--> 
+               
+                
+               
+                
+      		  </div> <!-- sm col 4 ends -->
+              
+            </div>
+        </div>
+    </div>
+  
+
+ 	</div><!-- side col sm-9 from include file ends -->
+ 
+  </div>
+  
+  
+</div>
 <!-- footer include -->
 <?php include('footer.php') ?>
 </body>

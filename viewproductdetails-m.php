@@ -55,7 +55,7 @@
                                                
                                                 
                                                 <div class="panel-body"  ng:repeat="child in subcategorydisp.starSuppliers">
-                                                	<li style="padding:-10px;margin:-10px;">{{child.name}}</li>
+                                                	<li style="padding:-10px;margin:-10px;">{{child.name}} <a href="supplierdetails.php?scode={{child.scode | encodeURIComponent  }}&sname={{child.name | encodeURIComponent}}&frompage=products" class="btn btn-default btn-sm btn-default  buttonspacebottom pull-right">View Star Supplier Details</a></li>
                                         		</div>
                                                 <div class="panel-body">
                                                    

@@ -48,8 +48,7 @@ function subcategory($scope,$http) {
 }
 
     var app = angular.module("MyApp", []);
-    
-    app.directive('errSrc', function() {
+	 app.directive('errSrc', function() {
       return {
         link: function(scope, element, attrs) {
           element.bind('error', function() {
@@ -112,8 +111,11 @@ $('datepicker').datetimepicker({
                     <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" />
                     
                     <div class="caption">
-                        <h3>{{subcategorydisp.name}}</h3>
+                        <h4>{{subcategorydisp.name}}</h4> <p>{{subcategorydisp.desc}}</p>
+                       
                         <p>Code: <strong>{{subcategorydisp.code}}</strong></p>
+                        
+                        
                       
                             <!-- view details and send enquiry button as includes -->
                  			<?php include('viewproductdetails-m.php') ?>           

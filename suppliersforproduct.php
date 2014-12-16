@@ -93,7 +93,7 @@ app.filter('encodeURIComponent', function() {
                 <div class="panel-heading">
                     <h1 class="panel-title">Suppliers List for Product <strong><?php echo ($pname) ?> </strong></h1>
                 </div>
-                <div class="panel-body" ng:repeat="subcategorydisp in subcategorylist"><li>{{subcategorydisp._id.sname}}
+                <div class="panel-body" ng:repeat="subcategorydisp in subcategorylist"><li>{{subcategorydisp._id.sname}}<strong> ( Rating: {{subcategorydisp._id.rating}} / 5 ) </strong>
                 <a href="supplierdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}&frompage=products" class="btn btn-default btn-sm btn-default  buttonspacebottom pull-right">View Supplier Details</a></li></div>
                 
             </div>      

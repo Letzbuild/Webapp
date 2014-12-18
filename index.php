@@ -47,7 +47,6 @@ function category($scope,$http) {
 <body>
 
 <?php include('top.php') ?>
-<?php include('carousel.php') ?>
 <div class="container">
     <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
         <li class="active maincontentheadinginner">Category and Sub Category - <span style="cursor:pointer" class="badge" data-toggle="popover" data-placement="top" title="Category" data-content="Total no of Products shown against each subcategory under that category. Click to view all products for that sub category.">info</span></li>

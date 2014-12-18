@@ -1,143 +1,123 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php
 if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
-$showsearch="true";
+if (empty($_GET['pagecount'])) {$pagecount='';} else {$pagecount=$_GET["pagecount"]; }
+$showsearch="false";
 $pagetab="product";
 $submitlink=urlencode($subcategory);
+$pagecount=urlencode($pagecount);
 include('includes/sitevariables.php');
-
 $myserverlink="http://$serverlink/enquiries/product/add";
-
-
-
-
-
+include('includes/sitevariables.php') 
 ?>
 
-<?php include('includes/sitevariables.php') ?>
-
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LetzBuild</title>
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/myscript.js"></script>
-
-<!-- date picker scripts -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  
-  
-<!-- date picker ends -->
-
-
-<!-- angular scripts starts-->
-<script src= "js/angular.min.js"></script>
-<script>
-function subcategory($scope,$http) {
-	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
-	.success(function(response) {$scope.subcategorylist = response;});
-}
-
-    var app = angular.module("MyApp", []);
-	 app.directive('errSrc', function() {
-      return {
-        link: function(scope, element, attrs) {
-          element.bind('error', function() {
-            if (attrs.src != attrs.errSrc) {
-              attrs.$set('src', attrs.errSrc);
-            }
-          });
-        }
-      }
-    });
-
-
-var app1 = angular.module('MyApp1', []);
-app.filter('encodeURIComponent', function() {
-    return window.encodeURIComponent;
-});
-
-
-
+<html ng-app="myApp" ng-app lang="en">
+<head>
+    <meta charset="utf-8">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+	<?php include('js/app.php') ?> 
 	
-$('datepicker').datetimepicker({
-
-        pickTime: false
-
-  }).on('changeDate', function (e) {
-
-        $(this).datetimepicker('hide');
-
-  });
-
-
-
-</script>
-
-<!-- angular scripts ends-->
-
+	<title>Letz Build</title>
 </head>
-
 <body>
-
 <?php include('top.php') ?>
+<div ng-controller="customersCrtl">
 <div class="container">
-   
     <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
     	<li><a href="index.php">Sub Category</a></li>
         <li class="active maincontentheadinginner">Product List - <strong>( <?php echo ($subcategory) ?> )</strong>
         
-	 </ul> <div class="row" > 
-     <!-- pagination -->
-  
-  <!-- pagination ends -->
+	</ul>  
 	<?php include('sidel-col2topl-search.php') ?>
-	<div ng-app1="MyApp1">
-      <div  ng-app="MyApp" ng-controller="subcategory">
-        <div  ng:repeat="subcategorydisp in subcategorylist">
-          <div class="col-sm-4">
-     		
-          	 	<div class="thumbnail">
-                    
-                    <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" />
-                    
-                    <div class="caption">
-                        <h4>{{subcategorydisp.name}}</h4> <p>{{subcategorydisp.desc}}</p>
-                       
-                        <p>Code: <strong>{{subcategorydisp.code}}</strong></p>
+	
+	<div class="row">
+        <div class="col-md-2">PageSize:
+            <select ng-model="entryLimit" class="form-control input-sm">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+        </div>
+        <div class="col-md-3">Filter:
+            <input type="text" ng-model="search" ng-change="filter()" placeholder="Filter" class="form-control input-sm" />
+        </div>
+        
+	    <div class="col-md-12" ng-show="filteredItems == 0">
+            <div class="col-md-12">
+                <h4>No customers found</h4>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="filteredItems > 0">    
+            <div pagination="" page="currentPage" max-size="20" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small pagination-sm" previous-text="«" next-text="»"></div>
+        </div>
+	
+	
+		<br/>
+    
+        <div  ng-show="filteredItems > 0">
+			<!--Sort By: Product Sub Category&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort"></i></a>
+			Code&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort"></i></a>
+			Description &nbsp;<a ng-click="sort_by('Description');"><i class="glyphicon glyphicon-sort"></i></a><Br><br>-->
+		
+			<div ng-repeat="subcategorydisp in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+			
+				<div class="col-sm-4">
+					<div class="thumbnail">
+						<img  ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" />
+						<h4 class="media-heading">{{subcategorydisp.name}}<br><small><i>{{subcategorydisp.desc}}</i></small></h4>
+						<p>Code: <strong>{{subcategorydisp.code}}</stron</p>
+						<a href="productdetails.php?pcode={{subcategorydisp.code | encodeURIComponent}}&pname={{subcategorydisp.name | encodeURIComponent}}&frompage=products" class="btn btn-default btn-sm btn-group-justified buttonspacebottom" >View Product Details</a>
+						 <a href="productenquiryform.php?&pcode={{subcategorydisp.code | encodeURIComponent}}&pname={{subcategorydisp.name | encodeURIComponent}}" class="btn btn-default btn-sm btn-group-justified btn-warning">Send Product Enquiry</a>
                         
-                        
-                      
-                            <!-- view details and send enquiry button as includes -->
-                 			<?php include('viewproductdetails-m.php') ?>           
-                            <?php include('sendenquiryproduct-m.php') ?>   
-                            <!-- view details and send enquiry button as includes ends-->   
-                              
-                              
-                              
-                              
-                              
-                    </div>
-               </div>
-       
-         </div>
-       </div>
-     </div>
-     </div><!--myapp1 ends -->
-     </div> <!-- this div ends the column sm 9 from the include file side-col2... -->
-  </div>
+						
+						
+					</div>
+				</div>
+			
+			</div>
+		
+		
+			
+           <!-- <table class="table table-striped table-bordered table-responsive">
+            <thead>
+            <th>Image&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort"></i></a></th>
+            <th>Product Sub Category&nbsp;<a ng-click="sort_by('name');"><i class="glyphicon glyphicon-sort"></i></a></th>
+            <th>Code&nbsp;<a ng-click="sort_by('code');"><i class="glyphicon glyphicon-sort"></i></a></th>
+            <th>Description&nbsp;<a ng-click="sort_by('desc');"><i class="glyphicon glyphicon-sort"></i></a></th>
+            
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in filtered = (list | filter:search | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                    <td><img ng-src="images/productimages/{{data.url}}" err-SRC="images/productimages/noimage.jpg" /></td>
+					<td>{{data.name}}</td>
+                    <td>{{data.code}}</td>
+                    <td>{{data.desc}}</td>
+                </tr>
+            </tbody>
+            </table>-->
+			<div class="col-md-12" ng-show="filteredItems == 0">
+				<div class="col-md-12">
+					<h4>No customers found</h4>
+				</div>
+			</div>
+			<div class="col-md-12" ng-show="filteredItems > 0">    
+				<!--<div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;"></div>-->
+				<div pagination="" page="currentPage" max-size="20" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small pagination-sm" previous-text="«" next-text="»"></div>
+				
+			</div>
+		</div>
+	</div>
+	</div><!-- side col ends -->
 </div>
-
-<!-- footer include -->
-<?php include('footer.php') ?>
-</body>
+</div>
+     
+    </body>
 </html>

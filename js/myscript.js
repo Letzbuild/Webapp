@@ -392,8 +392,7 @@ if (errtype=='finished')
 		
 		
 		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&pcode=' + productcode;
-		
-		
+				
 		var xmlhttp;
 		if (window.XMLHttpRequest)
 		  {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -458,7 +457,7 @@ function supplierenquiry()
 {
 var msg=''
 var errtype='finished';
-alert("entered");
+
 var firstname = $("#firstname").val();
 var lastname = $("#lastname").val();
 var organisation = $("#organisation").val();

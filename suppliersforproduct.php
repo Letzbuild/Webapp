@@ -1,8 +1,11 @@
 <?php
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
 if (empty($_GET['pname'])) {$pname='';} else {$pname=$_GET["pname"]; }
+if (empty($_GET['frompage'])) {$frompage='';} else {$frompage=$_GET["frompage"]; }
 $showsearch="false";
-$pagetab="product";
+if($frompage=='products'){$pagetab="product";}
+if($frompage=='suppliers'){$pagetab="suppliers";}
+
 $submitlink=urlencode($pcode);
 //echo $submitlink;
 ?>
@@ -64,12 +67,29 @@ app.filter('encodeURIComponent', function() {
 
 <?php include('top.php') ?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+  	<?php
+	if($frompage=='products')
+	{
+	?>
+		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
     	<li><a href="index.php">Sub Category</a></li>
-        <li><a href="javascript:window.history.go(-1)">Products List</a></li>
-        <li class="active maincontentheadinginner">Product Suppliers  - <strong>( for Product: <?php echo ($pname) ?> )</strong>
-        
-	 </ul> 
+        <li><a href="javascript:window.history.go(-2)">Products List</a></li>
+		<li><a href="javascript:window.history.go(-1)">Products Details</a></li>
+        <li class="active maincontentheadinginner">More Suppliers - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
+	    </ul> 
+	<?php
+    }
+	else
+	{
+	?>
+    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<li><a href="suppliers.php">Supplier</a></li>
+        <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
+        <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
+        </ul>  
+     <?php
+	}
+	?> 
    <div class="row" > 
 
 	<?php include('sidel-col2topl-search.php') ?>

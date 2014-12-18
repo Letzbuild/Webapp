@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <img src="images/home/logo.png" width="150" height="57">
+                   <a href="index.php"> <img src="images/home/logo.png" width="150" height="57"></a>
         </div>
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="mainmenu collapse navbar-collapse">
@@ -49,7 +49,7 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Our <b class="caret"></b></a>
                             <ul role="menu" class="dropdown-menu">
-                                <li><a href="#">Produts</a></li>
+                                <li><a href="#">Products</a></li>
                                 <li><a href="#">Services</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Suppliers</a></li>

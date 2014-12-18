@@ -1,18 +1,21 @@
 <?php
+
 if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
 if (empty($_GET['pname'])) {$pname='';} else {$pname=$_GET["pname"]; }
+if (empty($_GET['frompage'])) {$frompage='';} else {$frompage=$_GET["frompage"]; }
 $showsearch="false";
-$pagetab="suppliers";
-//echo($scode);
+if($frompage=='products'){$pagetab="product";}
+if($frompage=='suppliers'){$pagetab="suppliers";}
+
+
 //echo($sname);
 //echo($pcode);
-//echo($pname);
 $submitlink=urlencode($pcode);
  
 include('includes/sitevariables.php');
-
+//echo($pagetab);
 ?>
 
 <!DOCTYPE html>
@@ -70,12 +73,38 @@ app.filter('encodeURIComponent', function() {
 
 <?php include('top.php') ?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    <?php
+	if($frompage=='products')
+	{
+	?>
+		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<li><a href="index.php">Sub Category</a></li>
+        <li><a href="javascript:window.history.go(-1)">Products List</a></li>
+        <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
+	    </ul> 
+	<?php
+    }
+	else
+	{
+	?>
+    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
     	<li><a href="suppliers.php">Supplier</a></li>
         <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
-         <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
-        
-	 </ul> 
+        <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
+        </ul>  
+     <?php
+	}
+	?>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
    <div class="row" > 
 
 	<?php include('sidel-col2topl-search.php') ?>
@@ -92,8 +121,10 @@ app.filter('encodeURIComponent', function() {
                     <h4 class="media-heading">{{subcategorydisp.name}} <small><i>( Under Sub Category <strong>{{subcategorydisp.category}}</strong> )</i></small></h4>
                     <p>{{subcategorydisp.desc}}.</p>
                     <h3>Code: {{subcategorydisp.code}} </h3>
-                    <a href="supplierenquiryform.php?scode=<?php echo($scode) ?>&sname=<?php echo($sname) ?>&pcode=<?php echo($pcode) ?>" class="btn btn-default btn-sm  btn-warning">Send Supplier Enquiry</a>
-                     <a ng-href="suppliersforproduct.php?pcode=<?php echo ($pcode) ?>&pname=<?php echo ($pname) ?>" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
+                    <?php if ($frompage=='suppliers') { ?>
+						<a href="supplierenquiryform.php?scode=<?php echo($scode) ?>&sname=<?php echo($sname) ?>&pcode=<?php echo($pcode) ?>" class="btn btn-default btn-sm  btn-warning">Send Supplier Enquiry</a>
+                    <?php } ?>
+					<a ng-href="suppliersforproduct.php?pcode=<?php echo ($pcode) ?>&pname=<?php echo ($pname) ?>&frompage=<?php echo ($frompage) ?>" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
                 </div>
             </div>                
               <div class="clearfix"></div>   

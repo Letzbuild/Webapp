@@ -4,7 +4,7 @@ if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
 if (empty($_GET['pname'])) {$pname='';} else {$pname=$_GET["pname"]; }
 $showsearch="false";
-$pagetab="suppliers";
+$pagetab="product";
 //echo($scode);
 //echo($sname);
 //echo($pcode);
@@ -18,7 +18,7 @@ $submitlink=urlencode($pcode);
 ?>
 <?php
 include('includes/sitevariables.php');
-$myserverlink="http://$serverlink/enquiries/supplier/add";
+$myserverlink="http://$serverlink/enquiries/product/add";
 ?>
 
 <!DOCTYPE html>
@@ -75,8 +75,9 @@ $('datepicker').datetimepicker({
 <div class="container">
    
     <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
-    	<li><a href="suppliers.php">Supplier</a></li>
-        <li class="active maincontentheadinginner">Supplier enquiry form <i>( To Supplier: <strong><?php echo($sname) ?></strong>, for  product: <strong><?php echo($pname) ?> )</i></strong>  </li>
+    	<li><a href="index.php">Sub Category</a></li>
+		<li><a href="javascript:window.history.go(-1)">Product List</a></li>
+        <li class="active maincontentheadinginner">Product enquiry <i>( For Product: <strong><?php echo($pname) ?>)</strong></li>
         
 	 </ul>
      <div class="row" > 
@@ -91,17 +92,7 @@ $('datepicker').datetimepicker({
 			<div class="clearfix"></div>
 			<div class="formouter">
 	
-    		<form name="supplierenquiryform" id="supplierenquiryform">
-			
-			<div class="col-sm-12">
-			<label>Supplier Name</label>
-            <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              	<input type="text" class="form-control input-sm" id="" placeholder=""  value="<?php echo($sname) ?>" maxlength="30" mandatory="yes" disabled>
-	            
-            </div>
-			</div>
-			
+    		<form name="productenquiryform" id="productenquiryform">
 			<div class="col-sm-6">
      		<label for="firstname" onkeyup="productenquiry(this.form.name)">First Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
@@ -109,7 +100,7 @@ $('datepicker').datetimepicker({
               	<input type="text" class="form-control input-sm" id="firstname" placeholder="First Name"  maxlength="30" mandatory="yes" >
 	            <span id="firstname-display"></span>
             </div>
-			</div>
+			</div>	
 			
 			<div class="col-sm-6">
             <label for="lastname">Last Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
@@ -127,8 +118,8 @@ $('datepicker').datetimepicker({
               	<input type="text" class="form-control input-sm" id="organisation" placeholder="Organisation" maxlength="30" mandatory="yes">
                 <span id="organisation-display"></span>
             </div>
-			</div>
-			
+			</div>	
+
 			<div class="col-sm-6">
             <label for="mobilenumber">Mobile Number<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
@@ -154,18 +145,7 @@ $('datepicker').datetimepicker({
                 <input type="text" class="form-control input-sm" id="quantity" placeholder="Quantity" maxlength="6"onblur="isphonenumber(document.getElementById(this.id))"  mandatory="yes">
                 <span id="quantity-display"></span>
            </div>
-		   </div>
-           <!-- <div class="form-group">
-                    <label class="radio-inline">
-                        <input type="radio" name="radioquantity" value="kilograms"> Kilograms
-                    <sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-    
-                    <label class="radio-inline">
-                        <input type="radio" name="radioquantity" value="metrictonnes"> Metric Tonnes
-                    <sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            </div>-->
-        
-                                          
+            </div>                           
         
             <div class="col-sm-6">
             <label for="specification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
@@ -241,10 +221,10 @@ $('datepicker').datetimepicker({
                <input readonly class="form-control input-sm" type=text name=remLen size=3 maxlength=3 value="200"> characters left<br>
                <span id="anyspecialinstruction-display"></span>
             </div> 
-             </div> 
+            </div>
 
 			<div class="col-sm-12">
-            <button type="button" class="btn btn-warning"  onclick="supplierenquiry(this.form.name)" mandatory="no">Submit</button>
+            <button type="button" class="btn btn-warning"  onclick="productenquiry(this.form.name)" mandatory="no">Submit</button>
             <span class="error" style="display:none">
             <div class="alert alert-danger">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -258,12 +238,11 @@ $('datepicker').datetimepicker({
             </div>
            </span>
 		   </div>
-		   
            <input type="hidden" value="<?php echo($scode) ?>" name="suppliercode" id="suppliercode" >
            <input type="hidden" value="<?php echo($sname) ?>" name="suppliername" id="suppliername">
            <input type="hidden" value="<?php echo($pcode) ?>" name="productcode" id="productcode" >
            <input type="hidden" value="<?php echo($pname) ?>" name="productname" id="productname">
-            <input type="hidden" value="<?php echo($supplierenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
+            <input type="hidden" value="<?php echo($productenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
            <input type="hidden" value="<?php echo($myserverlink) ?>" name="serverlink" id="serverlink" />
        
        

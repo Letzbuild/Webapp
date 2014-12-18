@@ -1,8 +1,8 @@
     <!-- Column 1 side bar starts-->
  	<div class="col-sm-3">
-	<a class="btn btn-default btn-block" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
-    <a class="btn btn-default btn-block" href="quotationrequest.php?linkid=bom">BOM</a>
-    <a class="btn btn-default btn-block" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
+	<a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
+    <a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=bom">BOM</a>
+    <a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
     </div>
     <P class="visible-xs"><Br /></P>
     <!-- Column 1 side bar ends--> 
@@ -10,10 +10,10 @@
 	
   		<div class="col-sm-9"> 
      		<div class="category-tab">
-        	     <ul class="nav nav-tabs nav-justified">
-                    <li class="<?php echo($pagetabproduct) ?>"><a href="index.php">Products</a></li>
-                    <li class="<?php echo($pagetabsuppliers) ?>"><a href="suppliers.php">Suppliers</a></li>
-                    <li class="<?php echo($pagetabservices) ?>"><a href="services.php">Services</a></li>
+        	     <ul class="nav nav-tabs nav-justified" >
+                    <li style="height:20px" class="<?php echo($pagetabproduct) ?>"><a href="index.php" style="cursor:pointer">Products</a></li>
+                    <li style="height:20px" class="<?php echo($pagetabsuppliers) ?>"><a href="suppliers.php" style="cursor:pointer">Suppliers</a></li>
+                    <li style="height:20px" class="<?php echo($pagetabservices) ?>"><a href="services.php" style="cursor:pointer">Services</a></li>
                 </ul>
            </div> 
    	  	</div>

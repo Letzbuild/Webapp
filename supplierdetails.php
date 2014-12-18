@@ -69,29 +69,11 @@ app.filter('encodeURIComponent', function() {
 
 <?php include('top.php') ?>
 <div class="container">
-	<?php
-	if ($frompage=='products')
-	{
-	?>
 		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
-    	<li><a href="index.php">Sub Category</a></li>
-        <li><a href="javascript:window.history.go(-2)">Products List</a></li>
-        <li><a href="javascript:window.history.go(-1)">Products Suppliers</a></li>
-       <li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
-	  </ul> 
-	<?php
-    }
-	else
-	{
-	?>
-    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
-    	<li><a href="suppliers.php">Supplier</a></li>
-        <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
-         <li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
-         </ul> 
-     <?php
-	}
-	?>
+    	<li><a href="javascript:window.history.go(-1)">Back (Previous Page)</a></li>
+		<li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
+		</ul> 
+	
    <div class="row" > 
 
 	<?php include('sidel-col2topl-search.php') ?>

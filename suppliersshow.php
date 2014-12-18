@@ -92,7 +92,7 @@ app.filter('encodeURIComponent', function() {
                                     <h3>{{products._id.pname}}</h3>
                                     <p>Code: {{products._id.pcode}}</p>
                                     
-                                    <a href="productdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}&pcode={{products._id.pcode | encodeURIComponent}}&pname={{products._id.pname | encodeURIComponent}}" class="btn btn-default btn-sm btn-group-justified buttonspacebottom" >View Product Details</a>
+                                    <a href="productdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}&pcode={{products._id.pcode | encodeURIComponent}}&pname={{products._id.pname | encodeURIComponent}}&frompage=suppliers" class="btn btn-default btn-sm btn-group-justified buttonspacebottom" >View Product Details</a>
                                     
                                     
                                     

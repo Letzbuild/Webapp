@@ -70,7 +70,7 @@ function category($scope,$http) {
                   </div>
                   <div class="panel-body">
                   <div ng:repeat="child in x.subCats | limitTo:5">
-                  		<li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
+                  		<li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}&pagecount={{ child.cnt | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
                    </div>
                 </div>
                 
@@ -89,7 +89,7 @@ function category($scope,$http) {
                     </div>
                     <div class="modal-body">
                       <div ng:repeat="child in x.subCats">
-                        <li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
+                        <li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}&pagecount={{ child.cnt | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
                       </div>
                     </div>
                     <div class="modal-footer"> To close this window click anywhere on the screen or press this button

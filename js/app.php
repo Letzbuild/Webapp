@@ -11,7 +11,7 @@ app.filter('startFrom', function() {
     }
 });
 app.controller('customersCrtl', function ($scope, $http, $timeout) {
-    $http.get('http://localhost:4567/products/retrieve?cat=<?php echo($submitlink) ?>&limit=<?php echo($pagecount) ?>&page=1').success(function(data){
+    $http.get('http://<?php echo $serverlink ?>/products/retrieve?cat=<?php echo($submitlink) ?>&limit=<?php echo($pagecount) ?>&page=1').success(function(data){
         $scope.list = data;
 		
         $scope.currentPage = 1; //current page

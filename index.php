@@ -48,7 +48,7 @@ function category($scope,$http) {
 
 <?php include('top.php') ?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    <ul class="breadcrumb"><span class="maincontentheading"></span> 
         <li class="active maincontentheadinginner">Category and Sub Category - <span style="cursor:pointer" class="badge" data-toggle="popover" data-placement="top" title="Category" data-content="Total no of Products shown against each subcategory under that category. Click to view all products for that sub category.">info</span></li>
 	 </ul> <div class="row" > 
    

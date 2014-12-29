@@ -69,7 +69,7 @@ app.filter('encodeURIComponent', function() {
 
 <?php include('top.php') ?>
 <div class="container">
-		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+		<ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="javascript:window.history.go(-1)">Back (Previous Page)</a></li>
 		<li class="active maincontentheadinginner">Supplier Details - <strong>( for Supplier: <?php echo ($sname) ?> )</strong></li>
 		</ul> 

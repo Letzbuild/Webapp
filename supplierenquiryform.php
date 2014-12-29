@@ -74,7 +74,7 @@ $('datepicker').datetimepicker({
 <?php include('top.php') ?>
 <div class="container">
    
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    <ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="suppliers.php">Supplier</a></li>
         <li class="active maincontentheadinginner">Supplier enquiry form <i>( To Supplier: <strong><?php echo($sname) ?></strong>, for  product: <strong><?php echo($pname) ?> )</i></strong>  </li>
         

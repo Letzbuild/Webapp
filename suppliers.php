@@ -50,7 +50,7 @@ function category($scope,$http) {
 
 <?php include('top.php') ?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    <ul class="breadcrumb"><span class="maincontentheading"></span> 
         <li class="active maincontentheadinginner">Suppliers - <span style="cursor:pointer" class="badge" data-toggle="popover" data-placement="right" title="Supplier Main" data-content="subcategory with total suppliers shown under each category, Click on that particular sub category to view all the suppliers for that particular sub category">info</span></li>
         
 	 </ul> <div class="row" > 

@@ -71,7 +71,7 @@ app.filter('encodeURIComponent', function() {
 	if($frompage=='products')
 	{
 	?>
-		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+		<ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="index.php">Sub Category</a></li>
         <li><a href="javascript:window.history.go(-2)">Products List</a></li>
 		<li><a href="javascript:window.history.go(-1)">Products Details</a></li>
@@ -82,7 +82,7 @@ app.filter('encodeURIComponent', function() {
 	else
 	{
 	?>
-    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="suppliers.php">Supplier</a></li>
         <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
         <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>

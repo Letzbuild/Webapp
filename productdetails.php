@@ -66,7 +66,12 @@ app.filter('encodeURIComponent', function() {
 
 </script>
 <!-- angular scripts ends-->
-
+<style>
+.dropdown-menu {
+    width: 300px !important;
+    
+}
+</style>
 </head>
 
 <body>
@@ -77,7 +82,7 @@ app.filter('encodeURIComponent', function() {
 	if($frompage=='products')
 	{
 	?>
-		<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+		<ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="index.php">Sub Category</a></li>
         <li><a href="javascript:window.history.go(-1)">Products List</a></li>
         <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
@@ -87,7 +92,7 @@ app.filter('encodeURIComponent', function() {
 	else
 	{
 	?>
-    	<ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    	<ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="suppliers.php">Supplier</a></li>
         <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
         <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
@@ -98,10 +103,7 @@ app.filter('encodeURIComponent', function() {
 	
 	
 	
-	
-	
-	
-	
+		
 	
 	
 	
@@ -119,7 +121,7 @@ app.filter('encodeURIComponent', function() {
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">{{subcategorydisp.name}} <small><i>( Under Sub Category <strong>{{subcategorydisp.category}}</strong> )</i></small></h4>
-                    <p>{{subcategorydisp.desc}}.</p>
+                    
                     <h3>Code: {{subcategorydisp.code}} </h3>
                     <?php if ($frompage=='suppliers') { ?>
 						<a href="supplierenquiryform.php?scode=<?php echo($scode) ?>&sname=<?php echo($sname) ?>&pcode=<?php echo($pcode) ?>" class="btn btn-default btn-sm  btn-warning">Send Supplier Enquiry</a>
@@ -127,24 +129,50 @@ app.filter('encodeURIComponent', function() {
 					<a ng-href="suppliersforproduct.php?pcode=<?php echo ($pcode) ?>&pname=<?php echo ($pname) ?>&frompage=<?php echo ($frompage) ?>" class="btn btn-lg btn-default btn-sm" >View More Suppliers</a>
                 </div>
             </div>                
-              <div class="clearfix"></div>   
+              <div class="clearfix"></div>  <br>
                <div class="visible-xs" style="padding-bottom:15px"></div>                     
-          										
-                                                <table class="table table-responsive  table-striped">
+													<!-- <table class="table table-responsive  table-striped">
+														<thead >
+															<tr class="warning">
+																<th>Description</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>{{subcategorydisp.desc}}</td>
+															</tr>
+														</tbody>
+													 </table> -->
+													
+													<table class="table table-responsive  table-striped">
                                                 	<thead >
-                                                        <tr  class="warning">
-                                                            <th>Specifications</th>
-                                                            <th></th>
+                                                        <tr class="warning">
+                                                            <th>Specification List</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng:repeat="(key, value) in subcategorydisp.specs">
-                                                            <td width="25%">{{key}}</td>
-                                                            <td>{{value}}</td>
-
+                                                        <tr ng:repeat="child in subcategorydisp.specs">
+                                                            <td>{{child}}</td>
                                                         </tr>
 	                                                </tbody>
-                                                 </table>
+													</table>  
+													
+													<table class="table table-responsive  table-striped">
+                                                	<thead >
+                                                        <tr class="warning">
+                                                            <th>Dimesions List</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng:repeat="x in subcategorydisp.dim">
+                                                            <td>{{x}}</td>
+                                                        </tr>
+	                                                </tbody>
+													</table>  
+												
+													
+
+													
 
                                                 <table class="table table-responsive  table-striped">
                                                 	<thead >

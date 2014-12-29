@@ -3,7 +3,9 @@
 
 
 /* customized css */
-
+.cursor-pointer{
+cursor:pointer;
+}
 .btn-navbar
 {
     background: #f47115;

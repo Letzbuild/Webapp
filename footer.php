@@ -58,7 +58,7 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright &#169; 2014 LetzBuild Inc. All rights reserved.</p>
+					<p class="pull-left">Copyright &#169; 2014 Letzbuild India Private Limited. All rights reserved.</p>
 					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.varnamayamedia.com">Varnamayamedia.com</a></span></p>
 				</div>
 			</div>

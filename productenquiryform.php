@@ -63,9 +63,10 @@ $('datepicker').datetimepicker({
 
   });
 
-</script>
 
-<!-- angular scripts ends-->
+
+  </script>
+
 
 </head>
 
@@ -74,7 +75,7 @@ $('datepicker').datetimepicker({
 <?php include('top.php') ?>
 <div class="container">
    
-    <ul class="breadcrumb"><span class="maincontentheading">You are here:</span> 
+    <ul class="breadcrumb"><span class="maincontentheading"></span> 
     	<li><a href="index.php">Sub Category</a></li>
 		<li><a href="javascript:window.history.go(-1)">Product List</a></li>
         <li class="active maincontentheadinginner">Product enquiry <i>( For Product: <strong><?php echo($pname) ?>)</strong></li>
@@ -88,8 +89,56 @@ $('datepicker').datetimepicker({
       <div  ng-app="MyApp" ng-controller="subcategory">
         <div  ng:repeat="subcategorydisp in subcategorylist">
         
-            <div class="pull-right"><i><h6>Fields with asterix are required</h6></i></div>
-			<div class="clearfix"></div>
+           
+			<div class="col-sm-12" style="background-color:#eee;padding:10px;">
+			<div class="col-sm-6" style="background-color:#ccc">
+				<label for="orderspecification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+				 <select class="form-control input-sm"  id="orderspecification" name="orderspecification" mandatory="yes">
+					<option value="none" selected>Select One</option>
+					<option  ng:repeat="child in subcategorydisp.orderSpec" value="{{child}}">{{child}}</option>
+				 </select>
+				<span id="orderspecification-display"></span>
+				</div>
+
+				<label for="specification">Specifications List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+				 <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
+					<option value="none" selected>Specifications List</option>
+					<option  ng:repeat="child in subcategorydisp.specs" value="{{child}}">{{child}}</option>
+				 </select>
+				<span id="specification-display"></span>
+				</div>
+
+				<label for="dimension">Dimensions List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+			   <select class="form-control input-sm"  id="dimension" name="dimension" mandatory="yes" >
+					<option value="none" selected>Dimesions List</option>
+					<option ng:repeat="child in subcategorydisp.dim">{{child}}</option>
+				</select>
+				<span id="dimension-display"></span>
+				</div>
+			</div>
+			
+			 <div class="col-sm-6" >
+				<div class="thumbnail">
+                    <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
+                    <div class="">
+                        <h3>{{subcategorydisp.name}} <small><i>( Under Sub Category <strong>{{subcategorydisp.category}}</strong> )</i></s</h3>
+                        <p>Code: {{subcategorydisp.code}}</p>
+                        
+                    </div>
+                </div>
+			</div>
+			</div>
+			<div class="clearfix"></div><Br>
+			
+			
+			
+
 			<div class="formouter">
 	
     		<form name="productenquiryform" id="productenquiryform">
@@ -147,17 +196,7 @@ $('datepicker').datetimepicker({
            </div>
             </div>                           
         
-            <div class="col-sm-6">
-            <label for="specification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
-             <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
-                <option value="none" selected>Select One</option>
-                <option  ng:repeat="child in subcategorydisp.orderSpec" value="{{child}}">{{child}}</option>
-             </select>
-            <span id="specification-display"></span>
-            </div>
-			</div>
+            
 			
 			<div class="col-sm-6">
             <label for="subject">Subject<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>

@@ -8,7 +8,7 @@
     <!-- Column 1 side bar ends--> 
     
 	
-  		<div class="col-sm-9"> 
+  		<div class="col-sm-9" > 
      		<div class="category-tab">
         	     <ul class="nav nav-tabs nav-justified" >
                     <li style="height:20px" class="<?php echo($pagetabproduct) ?>"><a href="index.php" style="cursor:pointer">Products</a></li>
@@ -17,8 +17,9 @@
                 </ul>
            </div> 
    	  	</div>
-
+		
        <div class="col-sm-9">
+	   
 	       <div class="col-sm-12">
         <?php 
 		if ($showsearch=="true")

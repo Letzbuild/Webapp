@@ -33,7 +33,7 @@ function enquiryform($scope,$http) {
 
 <div class="col-sm-12" >
 	<h3>Bill Of Material Enquiry List</h3>
-    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading">You are here:</span>
+    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading"></span>
         <li class="active maincontentheadinginner">Enquiries</li>
         <li class="active maincontentheadinginner">Bill Of Material</li>
 	 </ul>

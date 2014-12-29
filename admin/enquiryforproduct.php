@@ -33,7 +33,7 @@ function enquiryform($scope,$http) {
 
 <div class="col-sm-12" >
 	<h3>Product Enquiry List</h3>
-    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading">You are here:</span>
+    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading"></span>
         <li class="active maincontentheadinginner">Enquiries</li>
         <li class="active maincontentheadinginner">Product Enquiry</li>
 	 </ul>
@@ -93,7 +93,9 @@ function enquiryform($scope,$http) {
                                         <tr><td>Mobile Number</td><td>{{entry.mobile}}</td></tr>
                                         <tr><td>Email</td><td>{{entry.email}}</td></tr>
                                         <tr><td>Quantity</td><td>{{entry.qty}}</td></tr>
-                                        <tr><td>Order Specification</td><td>{{entry.orderSpec}}</td></tr>
+                                        <tr><td>Quantity Specification</td><td>{{entry.orderSpec}}</td></tr>
+										<tr><td>Specification </td><td>{{entry.spec}}</td></tr>
+										<tr><td>Dimension </td><td>{{entry.dim}}</td></tr>
                                         <tr><td>Subject</td><td>{{entry.sub}}</td></tr>
                                         <tr><td>Date Needed</td><td>{{entry.needDate}}</td></tr>
                                         <tr><td>Budget</td><td>{{entry.budget}}</td></tr>

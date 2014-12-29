@@ -268,8 +268,14 @@ var mobilenumber = $("#mobilenumber").val();
 var email = $("#email").val();
 var quantity = $("#quantity").val();
 
+var e = document.getElementById("orderspecification");
+var orderspecification = e.options[e.selectedIndex].value;
+
 var e = document.getElementById("specification");
 var specification = e.options[e.selectedIndex].value;
+
+var e = document.getElementById("dimension");
+var dimension = e.options[e.selectedIndex].value;
 
 var subject = $("#subject").val();
 var datepicker = $("#datepicker").val();
@@ -289,8 +295,9 @@ fieldcoloranderrormessage("organisation","","red","finished");
 fieldcoloranderrormessage("mobilenumber","","red","finished");
 fieldcoloranderrormessage("email","","red","finished");
 fieldcoloranderrormessage("quantity","","red","finished");
+fieldcoloranderrormessage("orderspecification","","red","finished");
 fieldcoloranderrormessage("specification","","red","finished");
-fieldcoloranderrormessage("subject","","red","finished");
+fieldcoloranderrormessage("dimension","","red","finished");
 fieldcoloranderrormessage("datepicker","","red","finished");
 fieldcoloranderrormessage("budget","","red","finished");
 fieldcoloranderrormessage("deliverylocation","","red","finished");
@@ -335,12 +342,24 @@ if (quantity=='')
 		errtype="unfinished"
 	}
 
+if (orderspecification=="none" )
+	{
+		fieldcoloranderrormessage("orderspecification","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+
 if (specification=="none" )
 	{
 		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
 		errtype="unfinished"
 	}
 
+if (dimension=="none" )
+	{
+		fieldcoloranderrormessage("dimension","This field is required","red","unfinished");
+		errtype="unfinished"
+	}
+	
 if (subject=='')
 	{
 		fieldcoloranderrormessage("subject","This field is required","red","unfinished");
@@ -391,7 +410,7 @@ if (errtype=='finished')
 	{
 		
 		
-		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&pcode=' + productcode;
+		var dataString = 'firstname='+ firstname + '&lastname=' + lastname + '&organisation=' + organisation + '&mobilenumber=' + mobilenumber + '&email=' + email + '&quantity=' + quantity + '&specification=' + specification + '&dimension=' + dimension + '&orderspecification=' + orderspecification + '&subject=' + subject + '&datepicker=' + datepicker + '&approximatebudget=' + budget + '&deliverylocation=' + deliverylocation + '&frequency=' + frequency + '&reasonforpurchase=' + reasonforpurchase + '&anyspecialinstruction=' + anyspecialinstruction + '&enquirynumber=' + enquirynumber + '&pcode=' + productcode;
 				
 		var xmlhttp;
 		if (window.XMLHttpRequest)

@@ -1,11 +1,12 @@
 <?php
-$pagetab="";
-$showsearch="false";
-include('../includes/sitevariables.php');
-$myserverlink="http://$serverlink/enquiries/pms/retrieve?";
-?>
+ $pagetab="";
+ $showsearch="false";
+ include('../includes/sitevariables.php');
 
-<html ng-app="master-app">
+ ?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LetzBuild Admin</title>
@@ -13,20 +14,17 @@ $myserverlink="http://$serverlink/enquiries/pms/retrieve?";
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="../css/main.css">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/admin.js"></script>
 <script src= "../js/angular.min.js"></script>
-<script src="../js/ui-bootstrap.js"></script>
-	
-	<script type="text/javaScript">
-		var productname=""
-	</script>
-	<script type="text/javaScript">
-		var myserverlink=<?php echo("'".$myserverlink."'") ?>
-	</script>
-	<script src="../js/pagination-application.js"></script>
+<script>
+function enquiryform($scope,$http) {
+	 $http.get("http://<?php echo($serverlink) ?>/enquiries/qs/retrieve")
+	.success(function(response) {$scope.enquirylist = response;});
+}
+</script>
+
 </head>
 
 <body>
@@ -34,16 +32,20 @@ $myserverlink="http://$serverlink/enquiries/pms/retrieve?";
 <?php include('admintop.php') ?>
 
 
-<div class="col-sm-12" style="margin:5px;"><Br>
-	<h4 class="pageheader"><span class="fa fa-database fa-breadcrumb" ></span>Procurement Management Enquiry</h4><br>
-	    
-	<div ng-controller="master-control" data-ng-init="setPage(bigCurrentPage)" >
-		<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>
-			
-    						<div class="table-responsive"> 
+<div class="col-sm-12" >
+	<h3>Quotation Request Enquiry List</h3>
+    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading"></span>
+        <li class="active maincontentheadinginner">Enquiries</li>
+        <li class="active maincontentheadinginner">Quaotation Request Enquiry</li>
+	 </ul>
+     <!-- display starts -->
+     <div  ng-app="" ng-controller="enquiryform">
+       
+          	 
+							<div class="table-responsive"> 
 							 <Br><table class="table table-striped table-hover table-condensed">
                                 <thead>
-                                    <tr class="info">
+                                    <tr class="warning">
                                         <th>Enquiry Number</th>
                                         <th>Customer Name</th>
                                         <th>Organisation</th>
@@ -53,7 +55,7 @@ $myserverlink="http://$serverlink/enquiries/pms/retrieve?";
                                 </thead>
                                 <tbody>
                                 	
-                                   <tr ng:repeat="entry in returnedlist.result" ng-href="#{{ entry.enqno }}" data-toggle="modal" ng-show="dataLoaded" style="cursor:pointer">
+                                   <tr ng:repeat="entry in enquirylist" ng-href="#{{ entry.enqno }}" data-toggle="modal" style="cursor:pointer">
                                     <td>{{entry.enqno}}</td>
                                     <td>{{entry.fname}}&nbsp;{{entry.lname}}</td>
                                     <td>{{entry.org}}</td>
@@ -64,21 +66,21 @@ $myserverlink="http://$serverlink/enquiries/pms/retrieve?";
                                     
                                 </tbody>
                             </table>                           
-                        </div>          
-						<?php include('pageloader.php') ?>
+                        </div>            
+            
 
     
-                      <!-- Modal HTML starts--> 
-                     <div ng:repeat="entry in returnedlist.result">
+                     <!-- Modal HTML starts--> 
+                     <div ng:repeat="entry in enquirylist">
                                <div id="{{ entry.enqno }}" class="modal fade">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
-                                    <div class="modal-body">
+                                    <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h5 >Procurement Management Enquiry From Customer : <strong>{{entry.fname}}&nbsp;{{entry.lname}}</srong></h5>
+                                      <h4 class="modal-title">Quotaion Request Enquiry <small>From customer : </small> {{entry.fname}}&nbsp;{{entry.lname}}</h4>
                                       
-                                      <h5>Enquiry Number:  <strong>{{ entry.enqno }}</strong></h5>
-                                      <h5>Enquiry Created On:  <strong>{{ entry.enqDate }}</strong></h5>
+                                      <h5>Enquiry Number:  <strong>{{ entry.enqno }}</strong></h6>
+                                      <h5>Enquiry Created On:  <strong>{{ entry.enqDate }}</strong></h6>
                                       
                                     </div>
                                     <div class="modal-body">

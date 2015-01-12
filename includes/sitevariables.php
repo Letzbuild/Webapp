@@ -45,7 +45,4 @@ if ($pagetab=="services")
 {
 	$pagetabservices="";
 }
-
-
-
 ?>

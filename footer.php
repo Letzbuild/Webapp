@@ -42,7 +42,7 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>About Letzbuild</h2>
+							<h2>Email Letzbuild</h2>
 							<form action="#" class="searchform">
 								<input type="text" placeholder="Your email address" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
@@ -59,10 +59,10 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright &#169; 2014 Letzbuild India Private Limited. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.varnamayamedia.com">Varnamayamedia.com</a></span></p>
+					<p class="pull-right">Designed and Developed by <span><a target="_blank" href="http://www.varnamayamedia.com">Varnamayamedia.com</a></span></p>
 				</div>
 			</div>
 		</div>
 		
-	</footer><!--/Footer-->
+	</footer>
 	

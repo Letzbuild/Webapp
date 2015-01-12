@@ -1,0 +1,1 @@
+<p class="text-center" ng-hide="dataLoaded"><i class="fa fa-spinner fa-spin fa-5x"></i></p>

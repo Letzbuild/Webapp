@@ -1,131 +1,105 @@
 <?php
+if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
+if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
 if (empty($_GET['pname'])) {$pname='';} else {$pname=$_GET["pname"]; }
+if (empty($_GET['pagecount'])) {$pagecount='';} else {$pagecount=$_GET["pagecount"]; }
+if (empty($_GET['category'])) {$category='';} else {$category=$_GET["category"]; }
+if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
 if (empty($_GET['frompage'])) {$frompage='';} else {$frompage=$_GET["frompage"]; }
+
 $showsearch="false";
+$productdetailsactive="";
+$productenquiryactive ="";
+$suppliersactive="active";
+$supplierenquiryactive ="disabled";
 if($frompage=='products'){$pagetab="product";}
 if($frompage=='suppliers'){$pagetab="suppliers";}
 
-$submitlink=urlencode($pcode);
-//echo $submitlink;
-?>
-<?php include('includes/sitevariables.php') ?>
+include('includes/sitevariables.php');
+$myserverlink="http://$serverlink/suppliers/retrieve?pcode=";
 
-<!DOCTYPE html>
-<html lang="en">
+?>
+
+<html ng-app="master-app">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LetzBuild</title>
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/myscript.js"></script>
-
-
-
-<!-- angular scripts starts-->
-<script src= "js/angular.min.js"></script>
-
-<script>
-function subcategory($scope,$http) {
-	<!-- $http.get("subcategory.json")-->
-	 $http.get("http://<?php echo($serverlink) ?>/suppliers/retrieve?pcode=<?php echo ($submitlink) ?>") 
-	 //$http.get("supplier.json?cat=<?php echo ($submitlink) ?>&limit=10&page=1") 
-	.success(function(response) {$scope.subcategorylist = response;});
-}
-
-var app = angular.module("MyApp", []);
-    
-    app.directive('errSrc', function() {
-      return {
-        link: function(scope, element, attrs) {
-          element.bind('error', function() {
-            if (attrs.src != attrs.errSrc) {
-              attrs.$set('src', attrs.errSrc);
-            }
-          });
-        }
-      }
-    });
-
-var app1 = angular.module('MyApp1', []);
-app.filter('encodeURIComponent', function() {
-    return window.encodeURIComponent;
-});
-
-
-</script>
-<!-- angular scripts ends-->
-
+	<title>LetzBuild</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-bootstrap.js"></script>
+	
+	<script type="text/javaScript">
+		var productname="<?php echo($pcode) ?>"
+	</script>
+	<script type="text/javaScript">
+		var myserverlink=<?php echo("'".$myserverlink."'") ?>
+	</script>
+	<script src="js/pagination-application.js"></script>
+   
 </head>
 
 <body>
 
-<?php include('top.php') ?>
+<?php include('top.php')?>
 <div class="container">
-  	<?php
-	if($frompage=='products')
-	{
-	?>
-		<ul class="breadcrumb"><span class="maincontentheading"></span> 
-    	<li><a href="index.php">Sub Category</a></li>
-        <li><a href="javascript:window.history.go(-2)">Products List</a></li>
-		<li><a href="javascript:window.history.go(-1)">Products Details</a></li>
-        <li class="active maincontentheadinginner">More Suppliers - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
-	    </ul> 
-	<?php
-    }
-	else
-	{
-	?>
-    	<ul class="breadcrumb"><span class="maincontentheading"></span> 
-    	<li><a href="suppliers.php">Supplier</a></li>
-        <li><a href="javascript:window.history.go(-1)">Supplier List </a></li>
-        <li class="active maincontentheadinginner">Product Details - <strong>( for Product: <?php echo ($pname) ?> )</strong></li>
-        </ul>  
-     <?php
-	}
-	?> 
-   <div class="row" > 
 
-	<?php include('sidel-col2topl-search.php') ?>
-	<div ng-app1="MyApp1">
-      <div ng-app="MyApp" ng-controller="subcategory">
-        <div  ng:repeat="subcategorydisp in subcategorylist | limitTo:1">
-                <div class="media">
-                    <a href="#" class="pull-left">
-                        <img ng-src="images/productimages/{{subcategorydisp._id.purl}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{subcategorydisp._id.pname}}</h4>
-                        <p>Code: {{subcategorydisp._id.pcode}}</p>
-                    </div>
-                </div>
-         </div>
-         
-         <div class="clearfix"></div>      
-          
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h1 class="panel-title">Suppliers List for Product <strong><?php echo ($pname) ?> </strong></h1>
-                </div>
-                <div class="panel-body" ng:repeat="subcategorydisp in subcategorylist"><li>{{subcategorydisp._id.sname}}<strong> ( Rating: {{subcategorydisp._id.rating}} / 5 ) </strong>
-                <a href="supplierdetails.php?scode={{subcategorydisp._id.scode | encodeURIComponent  }}&sname={{subcategorydisp._id.sname | encodeURIComponent}}&frompage=products" class="btn btn-default btn-sm btn-default  buttonspacebottom pull-right">View Supplier Details</a></li></div>
-                
-            </div>      
-                
-                
-            
-            	
+	<?php include('leftcolumn.php') ?>
+	
+	<div class="col-sm-10 ">
+		<?php include('product-details-breadcrumb.php') ?>
 
-     </div><!-- controller ends -->
-     </div><!-- app ends for uri encode-->
-     </div> <!-- this div ends the column sm 9 from the include file side-col2... -->
-  </div><!-- row clas ends -->
+		<div ng-controller="master-control" data-ng-init="setPage(bigCurrentPage)" >
+			<?php include('productlinks.php') ?>
+			<h4 class="pageheader product-header" ><span class="fa fa-database fa-breadcrumb" ></span>Suppliers For <?php echo($pname) ?></h4><div class="hr-header"></div>
+				<div  ng:repeat="items in returnedlist.result | limitTo:1" >
+					<div class="media" >
+						<a href="#" class="pull-left">
+							  <img ng-src="images/productimages/{{items.purl}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
+						</a>
+						<div class="media-body">
+							<p class="media-heading">{{items.pname}}</p>
+							
+							<p><strong>Code:</strong> {{items.pcode}} <p>
+							
+						</div>
+					</div>
+				</div>
+				<div class="clearfix" ></div>
+				
+			
+			
+			<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>
+			<?php include('pageloader.php') ?>
+					<div  ng:repeat="items in returnedlist.result" ng-show="dataLoaded">
+						<div class="media-supplier dropshadow" >
+							<div class="media pageheader" >
+								<a href="#" class="pull-left">
+									 <img ng-src="images/productimages/{{items.purl}}1" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
+								</a>
+								<div class="media-body">
+									<h5 class="media-heading"><strong>{{items.supplier.name}}</strong> <i>( Rating: {{items.supplier.rating}} / 5 ) </i></h5>
+									<span class="fa fa-map-marker fa-breadcrumb" ></span>: {{items.supplier.address}}<Br>
+									<span class="fa fa-envelope fa-breadcrumb" ></span>: {{items.supplier.email}}<Br>
+									<div  ng:repeat="(key,value) in items.supplier.phone"><span class="fa fa-phone-square fa-breadcrumb" ></span>: {{value}} </div>
+									<p><a href="supplierenquiryform.php?scode={{items.supplier.scode | encodeURIComponent}}&sname={{items.supplier.name | encodeURIComponent}}&pcode={{items.pcode | encodeURIComponent}}&pname={{items.pname | encodeURIComponent}}&category=<?php echo(urlencode($category)) ?>&subcategory=<?php echo(urlencode($subcategory)) ?>" type="button" class="btn btn-primary btn-xs">Send Supplier Enquiry</a></p>
+								</div>
+							</div><div class="clearfix " ></div>
+						</div>
+					</div>
+			<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>		
+					
+					
+					
+			</div>
+		</div>
 </div>
 
 <!-- footer include -->

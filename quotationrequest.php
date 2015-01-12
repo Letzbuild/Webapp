@@ -40,16 +40,18 @@ if ($linkid=="procurementmanagement")
 </head>
 
 <body>
-<?php include('top.php') ?>
+<?php include('top.php')?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading"></span> 
-        <li class="active maincontentheadinginner"><?php echo($displaytext) ?>
- </ul> <div class="row" > 
-
-	<?php include('sidel-col2topl-search.php') ?> <!-- there is a div with col-sm-9 inside the include -->
+ 
+	<?php include('leftcolumn.php') ?>
+	
+	<div class="col-sm-10 ">
+		<h4 class="pageheader"><span class="fa fa-edit fa-breadcrumb" ></span><?php echo($displaytext) ?></h4>
+		<div class="breadcrumb-panel"><a href="index.php">Home</a><span class="fa fa-long-arrow-right fa-breadcrumb "></span><?php echo($displaytext) ?></div>
+		<hr class="hr-header">
      
    	
-	<div class="formouter" >	
+	
     <form name="quotationservices" id="quotationservices" action="<?php echo($submitlink) ?>" method="post">
 
 			
@@ -78,8 +80,10 @@ if ($linkid=="procurementmanagement")
               	<input type="text" class="form-control input-sm" id="organisation" name="organisation" placeholder="Organisation" maxlength="30" mandatory="yes">
                 <span id="organisation-display"></span>
             </div>
+			</div>
 	         
-             <label for="location">Location</label>
+			<div class="col-sm-6">
+            <label for="location">Location</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
               	<input type="text" class="form-control input-sm" id="location" name="location" placeholder="Location"maxlength="30"  mandatory="yes">
@@ -141,7 +145,6 @@ if ($linkid=="procurementmanagement")
 	 <input type="hidden" value="<?php echo($submitlink) ?>" name="submitlink" id="submitlink" >
      <input type="hidden" value="<?php echo($productenquirynumber) ?>" name="enquirynumber" id="enquirynumber" >
     </form>
-    </div>
   </div>
       
 </div>

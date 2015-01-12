@@ -3,23 +3,23 @@ if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
 if (empty($_GET['pname'])) {$pname='';} else {$pname=$_GET["pname"]; }
+if (empty($_GET['pagecount'])) {$pagecount='';} else {$pagecount=$_GET["pagecount"]; }
+if (empty($_GET['category'])) {$category='';} else {$category=$_GET["category"]; }
+if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
+if (empty($_GET['frompage'])) {$frompage='';} else {$frompage=$_GET["frompage"]; }
 $showsearch="false";
+$productdetailsactive="";
+$productenquiryactive ="";
+$suppliersactive="";
+$supplierenquiryactive ="active";
+$frompage='suppliers';
 $pagetab="suppliers";
-//echo($scode);
-//echo($sname);
-//echo($pcode);
-//echo($pname);
-
-
-
-
 $submitlink=urlencode($pcode);
 
-?>
-<?php
 include('includes/sitevariables.php');
 $myserverlink="http://$serverlink/enquiries/supplier/add";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -50,8 +50,22 @@ $myserverlink="http://$serverlink/enquiries/supplier/add";
 function subcategory($scope,$http) {
 	<!-- $http.get("subcategory.json")-->
 	 $http.get("http://<?php echo($serverlink) ?>/products/retrieve?pcode=<?php echo ($submitlink) ?>") 
-	.success(function(response) {$scope.subcategorylist = response;});
+	.success(function(response) {$scope.subcategorylist = response;$scope.dataLoaded = true});
 }
+
+  app.directive('errSrc', function() {
+      return {
+        link: function(scope, element, attrs) {
+          element.bind('error', function() {
+            if (attrs.src != attrs.errSrc) {
+              attrs.$set('src', attrs.errSrc);
+            }
+          });
+        }
+      }
+    });
+
+
 
 $('datepicker').datetimepicker({
 
@@ -73,27 +87,30 @@ $('datepicker').datetimepicker({
 
 <?php include('top.php') ?>
 <div class="container">
-   
-    <ul class="breadcrumb"><span class="maincontentheading"></span> 
-    	<li><a href="suppliers.php">Supplier</a></li>
-        <li class="active maincontentheadinginner">Supplier enquiry form <i>( To Supplier: <strong><?php echo($sname) ?></strong>, for  product: <strong><?php echo($pname) ?> )</i></strong>  </li>
-        
-	 </ul>
-     <div class="row" > 
-     <!-- pagination -->
-  
-  <!-- pagination ends -->
-	<?php include('sidel-col2topl-search.php') ?>
-      <div  ng-app="MyApp" ng-controller="subcategory">
-        <div  ng:repeat="subcategorydisp in subcategorylist">
-        
-            <div class="pull-right"><i><h6>Fields with asterix are required</h6></i></div>
-			<div class="clearfix"></div>
-			<div class="formouter">
-	
+<?php include('leftcolumn.php') ?>
+	<div class="col-sm-10">
+	<?php include('product-details-breadcrumb.php') ?>
+		<div  ng-app="MyApp" ng-controller="subcategory">
+		<?php include('productlinks.php') ?>
+		<h4 class="pageheader product-header" ><span class="fa fa-database fa-breadcrumb" ></span>Supplier Enquiry For <?php echo($pname) ?></h4><div class="hr-header"></div>
+		<?php include('pageloader.php') ?>
+		<div  ng:repeat="subcategorydisp in subcategorylist.result">
+			<div class="media" >
+					<a href="#" class="pull-left">
+						  <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
+					</a>
+					<div class="media-body">
+						<p class="media-heading">{{subcategorydisp.name}}</p>
+						
+						<p><strong>Code:</strong> {{subcategorydisp.code}} <p>
+						
+					</div>
+			</div>
+            <div class="clearfix" ></div>
+			
     		<form name="supplierenquiryform" id="supplierenquiryform">
 			
-			<div class="col-sm-12">
+			<div class="col-sm-12" >
 			<label>Supplier Name</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -101,6 +118,50 @@ $('datepicker').datetimepicker({
 	            
             </div>
 			</div>
+			
+			<div class="col-sm-6" >
+				<label for="dimension">Dimensions List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+			   <select class="form-control input-sm"  id="dimension" name="dimension" mandatory="yes" >
+					<option value="none" selected>Dimesions List</option>
+					<option ng:repeat="child in subcategorydisp.dim">{{child}}</option>
+				</select>
+				<span id="dimension-display"></span>
+				</div>
+			</div>
+			<div class="col-sm-6" >				
+				<label for="specification">Specifications List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+				 <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
+					<option value="none" selected>Specifications List</option>
+					<option  ng:repeat="child in subcategorydisp.specs" value="{{child}}">{{child}}</option>
+				 </select>
+				<span id="specification-display"></span>
+				</div>
+			</div>		
+			
+			<div class="col-sm-6" >
+            <label for="quantity">Quantity<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+            <div class="input-group custom-input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+                <input type="text" class="form-control input-sm" id="quantity" placeholder="Quantity" maxlength="6"onblur="isphonenumber(document.getElementById(this.id))"  mandatory="yes">
+                <span id="quantity-display"></span>
+           </div>
+		   </div>
+			<div class="col-sm-6" >
+            <label for="orderspecification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+            <div class="input-group custom-input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+             <select class="form-control input-sm"  id="orderspecification" name="orderspecification" mandatory="yes">
+                <option value="none" selected>Select One</option>
+                <option  ng:repeat="child in subcategorydisp.orderSpec" value="{{child}}">{{child}}</option>
+             </select>
+            <span id="orderspecification-display"></span>
+            </div>
+			</div>
+			
 			
 			<div class="col-sm-6">
      		<label for="firstname" onkeyup="productenquiry(this.form.name)">First Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
@@ -146,39 +207,7 @@ $('datepicker').datetimepicker({
                 <span id="email-display"></span>
              </div>
             </div>
-			
-			<div class="col-sm-6">
-            <label for="quantity">Quantity<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
-                <input type="text" class="form-control input-sm" id="quantity" placeholder="Quantity" maxlength="6"onblur="isphonenumber(document.getElementById(this.id))"  mandatory="yes">
-                <span id="quantity-display"></span>
-           </div>
-		   </div>
-           <!-- <div class="form-group">
-                    <label class="radio-inline">
-                        <input type="radio" name="radioquantity" value="kilograms"> Kilograms
-                    <sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-    
-                    <label class="radio-inline">
-                        <input type="radio" name="radioquantity" value="metrictonnes"> Metric Tonnes
-                    <sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            </div>-->
-        
-                                          
-        
-            <div class="col-sm-6">
-            <label for="specification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
-             <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
-                <option value="none" selected>Select One</option>
-                <option  ng:repeat="child in subcategorydisp.orderSpec" value="{{child}}">{{child}}</option>
-             </select>
-            <span id="specification-display"></span>
-            </div>
-			</div>
-			
+		
 			<div class="col-sm-6">
             <label for="subject">Subject<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
@@ -269,7 +298,7 @@ $('datepicker').datetimepicker({
        
         </form>
 
-    </div>
+  
 
 			   <script>
                $(function() {
@@ -300,9 +329,7 @@ $('datepicker').datetimepicker({
             </div>
                                  
 	   </div>
-     </div> <!-- this div ends the column sm 9 from the include file side-col2... -->
-  </div>
-
+	</div>
 </div>
 
                              

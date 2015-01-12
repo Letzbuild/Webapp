@@ -1,11 +1,11 @@
 <?php
- $pagetab="";
- $showsearch="false";
- include('../includes/sitevariables.php');
+$pagetab="";
+$showsearch="false";
+include('../includes/sitevariables.php');
+$myserverlink="http://$serverlink/enquiries/supplier/retrieve?";
+?>
 
- ?>
-<!DOCTYPE html>
-<html lang="en">
+<html ng-app="master-app">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LetzBuild Admin</title>
@@ -13,17 +13,20 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="../css/main.css">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/admin.js"></script>
 <script src= "../js/angular.min.js"></script>
-<script>
-function enquiryform($scope,$http) {
-	 $http.get("http://<?php echo($serverlink) ?>/enquiries/supplier/retrieve")
-	.success(function(response) {$scope.enquirylist = response;});
-}
-</script>
-
+<script src="../js/ui-bootstrap.js"></script>
+	
+	<script type="text/javaScript">
+		var productname=""
+	</script>
+	<script type="text/javaScript">
+		var myserverlink=<?php echo("'".$myserverlink."'") ?>
+	</script>
+	<script src="../js/pagination-application.js"></script>
 </head>
 
 <body>
@@ -31,20 +34,17 @@ function enquiryform($scope,$http) {
 <?php include('admintop.php') ?>
 
 
-<div class="col-sm-12" >
-	<h3>Supplier Enquiry List</h3>
-    <ul class="breadcrumb breadcrumb-spacetop"><span class="maincontentheading"></span>
-        <li class="active maincontentheadinginner">Enquiries</li>
-        <li class="active maincontentheadinginner">Supplier Enquiry</li>
-	 </ul>
-     <!-- display starts -->
-     <div  ng-app="" ng-controller="enquiryform">
-       
-          	 
-							<div class="table-responsive"> 
+<div class="col-sm-12" style="margin:5px;"><Br>
+	<h4 class="pageheader"><span class="fa fa-database fa-breadcrumb" ></span>Supplier Enquiry</h4><br>
+	    
+	<div ng-controller="master-control" data-ng-init="setPage(bigCurrentPage)" >
+		<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>
+			
+    						<div class="table-responsive"> 
 							 <Br><table class="table table-striped table-hover table-condensed">
                                 <thead>
-                                    <tr class="warning">
+                                    <tr class="info">
+                                    <tr class="info">
                                         <th>Supplier Name</th>
                                         <th>Customer Name</th>
                                         <th>Product</th>
@@ -56,7 +56,7 @@ function enquiryform($scope,$http) {
                                 </thead>
                                 <tbody>
                                 	<a >
-                                   <tr ng:repeat="entry in enquirylist" ng-href="#{{ entry.enqno }}" data-toggle="modal" style="cursor:pointer">
+                                   <tr ng:repeat="entry in returnedlist.result" ng-href="#{{ entry.enqno }}" data-toggle="modal" ng-show="dataLoaded" style="cursor:pointer">
                                     <td>{{entry.sname}}</td>
                                     <td>{{entry.fname}}&nbsp;{{entry.lname}}</td>
                                     <td>{{entry.pcode}}</td>
@@ -69,24 +69,33 @@ function enquiryform($scope,$http) {
                                     
                                 </tbody>
                             </table>                           
-                        </div>            
-            
+                        </div>        
+						<?php include('pageloader.php') ?>
 
     
-                     <!-- Modal HTML starts--> 
-                     <div ng:repeat="entry in enquirylist">
+                      <!-- Modal HTML starts--> 
+                     <div ng:repeat="entry in returnedlist.result">
                                <div id="{{ entry.enqno }}" class="modal fade">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                      <h4 class="modal-title"> Enquiry For Supplier <small>for product </small> {{ entry.pcode }}</h4>
-                                      
-                                      <h5>Enquiry Number:  <strong>{{ entry.enqno }}</strong></h6>
-                                      <h5>Enquiry Created On:  <strong>{{ entry.enqDate }}</strong></h6>
-                                      
-                                    </div>
                                     <div class="modal-body">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <div class="media">
+											<a href="#" class="pull-left">
+												<img ng-src="../images/productimages/{{items.url}}" err-SRC="../images/productimages/noimage.jpg" class="thumbnail"/>
+											</a>
+											<div class="media-body">
+												<h5 >Supplier Code: <strong>{{entry.scode}}</strong> <small></h5>
+												<h5 >Supplier Name: <strong>{{entry.sname}}</strong> <small></h5>
+												<h5 >Enquiry for Product Code: <strong>{{ entry.pcode}}</strong><small></h5>
+												<h5 >Enquiry for Product Name: <strong>{{entry.pname}}</strong><small></h5>
+												<h5>Enquiry Number:  <strong>{{ entry.enqno }}</strong></h5>
+												<h5>Enquiry Created On:  <strong>{{ entry.enqDate }}</strong></h5>
+											</div>
+										</div>
+									
+										<div class="clearfix"></div>									
+                                    
                                       
                                         <div class="table-responsive"> 
 							 			<table class="table table-striped table-hover table-condensed">
@@ -96,7 +105,9 @@ function enquiryform($scope,$http) {
                                         <tr><td>Mobile Number</td><td>{{entry.mobile}}</td></tr>
                                         <tr><td>Email</td><td>{{entry.email}}</td></tr>
                                         <tr><td>Quantity</td><td>{{entry.qty}}</td></tr>
-                                        <tr><td>Order Specification</td><td>{{entry.orderSpec}}</td></tr>
+                                        <tr><td>Quantity Specification</td><td>{{entry.orderSpec}}</td></tr>
+										<tr><td>Specification</td><td>{{entry.spec}}</td></tr>
+										<tr><td>Dimension</td><td>{{entry.dim}}</td></tr>
                                         <tr><td>Subject</td><td>{{entry.sub}}</td></tr>
                                         <tr><td>Date Needed</td><td>{{entry.needDate}}</td></tr>
                                         <tr><td>Budget</td><td>{{entry.budget}}</td></tr>

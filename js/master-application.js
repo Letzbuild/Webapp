@@ -1,27 +1,10 @@
 
 		angular.module('master-app', ['ui.bootstrap']);
-		angular.module('master-app').controller('master-control', function ($scope, $log, $http) {
-		  
-		  $scope.bigTotalItems = totalitemscount;
-		  $scope.bigCurrentPage = 1;
-		  ;
-		  $scope.setPage = function (pageNo) {
-			
-			$scope.bigCurrentPage = pageNo;
-			$scope.itemsperpage=12;
-			var itemsperpage=$scope.itemsperpage;
-			$http.get("http://" + serverlink + "/products/retrieve?cat=" + productname + "&limit=" + itemsperpage + "&page=" + pageNo) 
-			.success(function(response) {$scope.returnedlist = response;});
-			
-		  };
-
-		  $scope.pageChanged = function() {
-		  $log.log('Page changed to: ' + $scope.bigCurrentPage);
-		  };
-
-		  $scope.maxSize = 10;
-		  $scope.bigTotalItems = totalitemscount;
-		  $scope.bigCurrentPage = 1;
+		angular.module('master-app').controller('master-control',function category($scope,$http) {
+		$scope.dataLoaded = false;
+		
+		$http.get(myserverlink)
+		.success(function(response) {$scope.itemlist = response;$scope.dataLoaded = true;});
 		});
 		
 			
@@ -47,3 +30,5 @@
 		 
 		});
 			
+		
+	

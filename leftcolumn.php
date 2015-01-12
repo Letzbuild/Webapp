@@ -1,14 +1,13 @@
     <!-- Column 1 side bar starts-->
- 	<div class="col-sm-3">
-	<a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
-    <a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=bom">BOM</a>
-    <a class="btn btn-default btn-block btn-sm" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
-    </div>
+
+	 	<div class="col-sm-2 padding-left-zero" >
+			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
+			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=bom">BOM</a>
+			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
+		</div>
     <P class="visible-xs"><Br /></P>
-    <!-- Column 1 side bar ends--> 
-    
 	
-  		<div class="col-sm-9" > 
+  		<!--<div class="col-sm-9" > 
      		<div class="category-tab">
         	     <ul class="nav nav-tabs nav-justified" >
                     <li style="height:20px" class="<?php echo($pagetabproduct) ?>"><a href="index.php" style="cursor:pointer">Products</a></li>
@@ -18,9 +17,9 @@
            </div> 
    	  	</div>
 		
-       <div class="col-sm-9">
+       
 	   
-	       <div class="col-sm-12">
+	    <div class="col-sm-12">
         <?php 
 		if ($showsearch=="true")
 		{
@@ -38,5 +37,5 @@
 		}
 		?>
 		   </div>
-           
+         -->  
            <!-- note: the div column sm-9 is still open -->

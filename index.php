@@ -1,122 +1,89 @@
 <?php
+if (empty($_GET['category'])) {$category='';} else {$category=$_GET["category"]; }
+if (empty($_GET['subcategory'])) {$subcategory='';} else {$subcategory=$_GET["subcategory"]; }
+//if (empty($_GET['pagecount'])) {$pagecount='';} else {$pagecount=$_GET["pagecount"]; }
+$showsearch="false";
 $pagetab="product";
- $showsearch="true";
- 
- include('includes/sitevariables.php');
- ?>
+$submitlink=urlencode($subcategory);
+$mycategory=urlencode($category);
+//$totalitemscount=urlencode($pagecount);
+include('includes/sitevariables.php');
+$myserverlink="http://$serverlink/products/categories?";
+
+
+?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="master-app">
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LetzBuild</title>
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+	<title>LetzBuild</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-bootstrap.js"></script>
+	
+	<script type="text/javaScript">
+		var productname=""
+	</script>
+	<script type="text/javaScript">
+		var myserverlink=<?php echo("'".$myserverlink."'") ?>
+	</script>
+	<script src="js/pagination-application.js"></script>
+	
 
-<script src= "js/angular.min.js"></script>
-<script type='text/javascript'>
-var app = angular.module('app', []);
-app.filter('encodeURIComponent', function() {
-    return window.encodeURIComponent;
-});
-</script>
-
-
-<script>
-function category($scope,$http) {
-	 $http.get("http://<?php echo($serverlink) ?>/products/categories")
-	.success(function(response) {$scope.names = response;});
-}
-
-
-    $(document).ready(function(){
-
-        $('[data-toggle="popover"]').popover();   
-
-    });
-</script>
-
-
-
+    
 </head>
-<body>
+<body >
 
-<?php include('top.php') ?>
+<?php include('top.php')?>
 <div class="container">
-    <ul class="breadcrumb"><span class="maincontentheading"></span> 
-        <li class="active maincontentheadinginner">Category and Sub Category - <span style="cursor:pointer" class="badge" data-toggle="popover" data-placement="top" title="Category" data-content="Total no of Products shown against each subcategory under that category. Click to view all products for that sub category.">info</span></li>
-	 </ul> <div class="row" > 
-   
-	<?php 
-	include('sidel-col2topl-search.php');
-	?>
-
-
-  <div ng-app="app">
-  	  <div  ng-app="" ng-controller="category">
-            <div  ng:repeat="x in names ">
-              <div class="col-sm-4">
-               
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title" >{{ x.category}}<!--<span class="badge pull-right" >{{ x.cnt }}</span>--></h4>
-                 
-                  </div>
-                  <div class="panel-body">
-                  <div ng:repeat="child in x.subCats | limitTo:5">
-                  		<li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}&pagecount={{ child.cnt | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
-                   </div>
-                </div>
-                
-                  	<div ng-show="x.subCats.length > 5">
-                    	<a href="#{{ x._id }}" class="btn btn-lg btn-warning btn-sm" data-toggle="modal">View More</a> 
-                    </div>
-
-              <!-- Modal HTML starts--> 
-			  <div id="{{ x._id }}" class="modal fade">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">{{ x.category }} </h4>
-                      <h6>List of Subcategories for category <strong>{{ x.category }}</strong></h6>
-                    </div>
-                    <div class="modal-body">
-                      <div ng:repeat="child in x.subCats">
-                        <li style="padding-bottom:5px;"><a  href="subcategory.php?subcategory={{ child.cat | encodeURIComponent }}&pagecount={{ child.cnt | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span></li>
-                      </div>
-                    </div>
-                    <div class="modal-footer"> To close this window click anywhere on the screen or press this button
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             </div>
-              <!-- Modal HTML ends--> 
-               
-                
-               
-                
-      		  </div> <!-- sm col 4 ends -->
-              
-            </div>
-        </div>
-    </div>
-  
-
- 	</div><!-- side col sm-9 from include file ends -->
  
-  </div>
-  
-  
+	<?php include('leftcolumn.php') ?>
+	
+	<div class="col-sm-10 ">
+		<h4 class="pageheader"><span class="fa fa-database fa-breadcrumb" ></span>Products <span class="fa fa-book fa-exchange" ></span> <span class="fa fa-user fa-breadcrumb"></span>Suppliers</h4>
+		<div class="breadcrumb-panel"><span class="fa fa-long-arrow-right fa-breadcrumb "></span><a href="index.php">Home</a></div>
+		<hr class="hr-header">
+	
+	
+		<div ng-controller="master-control" data-ng-init="setPage(bigCurrentPage)" >
+			
+			
+			<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>
+			<?php include('pageloader.php') ?>
+			<div  ng:repeat="items in returnedlist.result"  ng-show="dataLoaded" >
+				<div class="col-sm-3 padding-left-zero">	
+					<div class="panel panel-default">
+						<div class="panel-heading panel-header-category">
+							<span class="panel-title" >
+								<a  href="subcategory.php?category={{ items.category | encodeURIComponent }}&pagecount={{ items.cnt | encodeURIComponent }}"><span class="panel-title-category" style="color:#598bd0">{{ items.category}}</span></a>
+							</span>
+						</div>
+						<div class="panel-body ">
+						
+							<div ng:repeat="child in items.subCats | limitTo:5">
+								<a  href="products.php?subcategory={{child.cat | encodeURIComponent }}&pagecount={{child.cnt | encodeURIComponent }}&category={{ items.category | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span>
+							</div>
+							<br>
+							<div ng-show="items.cnt > 5">
+								<a  href="subcategory.php?category={{ items.category | encodeURIComponent }}&pagecount={{ items.cnt | encodeURIComponent }}"class="btn  btn-xs btn-group-justified btn-primary">View More</a>
+							</div>
+						</div>
+					</div>
+				</div><div class="clearfix" ng-if="$index%4==3"></div>
+			</div>
+		
+		</div>
+	</div>
 </div>
-<!-- footer include -->
 <?php include('footer.php') ?>
 </body>
 </html>

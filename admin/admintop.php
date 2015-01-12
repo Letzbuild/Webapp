@@ -1,5 +1,5 @@
 <div class="col-sm-12 adminheader">
-	<img src="../images/home/logo.png">
+	<img src="../images/home/logo.jpg" >
     <span><strong>Administration Back Office</strong></span>
 </div>
 

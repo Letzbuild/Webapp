@@ -17,7 +17,7 @@ $bomenquirynumber="bm".$randomkey;
 $procurementmanagementenquirynumber="pm".$randomkey;
 
 /*server link*/
-$serverlink="117.218.227.143:”4567;
+$serverlink="117.218.227.143:4567”;
 //$serverlink="localhost:4567";
 
 /*page tabs*/

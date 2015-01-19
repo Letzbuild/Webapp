@@ -1,4 +1,5 @@
 <?php
+$supplierenquiryshow="true";
 if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }

@@ -1,4 +1,5 @@
 <?php
+$supplierenquiryshow="false";
 if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
@@ -35,6 +36,7 @@ $myserverlink="http://$serverlink/suppliers/retrieve?pcode=";
 	
 	<script src="js/angular.min.js"></script>
 	<script src="js/ui-bootstrap.js"></script>
+	 
 	
 	<script type="text/javaScript">
 		var productname="<?php echo($pcode) ?>"
@@ -44,6 +46,36 @@ $myserverlink="http://$serverlink/suppliers/retrieve?pcode=";
 	</script>
 	<script src="js/pagination-application.js"></script>
    
+   <style>
+   .rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+  
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-size:18px;
+  font-weight: bold;
+  
+}
+
+.rating .filled {
+  color: orange;
+}
+   </style>
+   
+   
+   
+
 </head>
 
 <body>
@@ -85,11 +117,13 @@ $myserverlink="http://$serverlink/suppliers/retrieve?pcode=";
 									 <img ng-src="images/productimages/{{items.purl}}1" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
 								</a>
 								<div class="media-body">
-									<h5 class="media-heading"><strong>{{items.supplier.name}}</strong> <i>( Rating: {{items.supplier.rating}} / 5 ) </i></h5>
+									<h5 class="media-heading"><strong>{{items.supplier.name}} </strong> <span ng-controller="balajisrirangam-star-rating" fundoo-rating rating-value="[items.supplier.rating]" max="5" readonly="true"></span></h5>
 									<span class="fa fa-map-marker fa-breadcrumb" ></span>: {{items.supplier.address}}<Br>
 									<span class="fa fa-envelope fa-breadcrumb" ></span>: {{items.supplier.email}}<Br>
+
 									<div  ng:repeat="(key,value) in items.supplier.phone"><span class="fa fa-phone-square fa-breadcrumb" ></span>: {{value}} </div>
-									<p><a href="supplierenquiryform.php?scode={{items.supplier.scode | encodeURIComponent}}&sname={{items.supplier.name | encodeURIComponent}}&pcode={{items.pcode | encodeURIComponent}}&pname={{items.pname | encodeURIComponent}}&category=<?php echo(urlencode($category)) ?>&subcategory=<?php echo(urlencode($subcategory)) ?>" type="button" class="btn btn-primary btn-xs">Send Supplier Enquiry</a></p>
+									<span class="fa fa-laptop fa-breadcrumb" ></span>: <a href="www.letzbuild.com/{{items.supplier.name}}" target="_blank">www.letzbuild.com/{{items.supplier.name}}</a><Br>
+								<p><a href="supplierenquiryform.php?scode={{items.supplier.scode | encodeURIComponent}}&sname={{items.supplier.name | encodeURIComponent}}&pcode={{items.pcode | encodeURIComponent}}&pname={{items.pname | encodeURIComponent}}&category=<?php echo(urlencode($category)) ?>&subcategory=<?php echo(urlencode($subcategory)) ?>" type="button" class="btn btn-primary btn-xs">Send Supplier Enquiry</a></p>
 								</div>
 							</div><div class="clearfix " ></div>
 						</div>

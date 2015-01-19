@@ -58,7 +58,7 @@ include('includes/sitevariables.php');
 			
 			
 			<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>
-			<h4 class="pageheader product-header" ><span class="fa fa-database fa-breadcrumb" ></span>Products Under (<?php echo($subcategory) ?>)</h4><div class="hr-header"></div>
+			<h4 class="pageheader product-header" ><span class="fa fa-database fa-breadcrumb" ></span>Products Under <?php echo($subcategory) ?></h4><div class="hr-header"></div>
 			<?php include('pageloader.php') ?>
 			<div  ng:repeat="subcategorydisp in returnedlist.result"  ng-show="dataLoaded" >
 				<div class="col-sm-3 padding-left-zero"  ng-show="dataLoaded">
@@ -69,7 +69,7 @@ include('includes/sitevariables.php');
 						<p class="media-heading">{{subcategorydisp.name}}<small></p><!--{{subcategorydisp.desc}}</i></small></h4>-->
 						<p><strong>Code: </strong>{{subcategorydisp.code}}</p>
 						<a href="productdetails.php?pcode={{subcategorydisp.code | encodeURIComponent}}&pname={{subcategorydisp.name | encodeURIComponent}}&category=<?php echo(urlencode($mycategory)) ?>&subcategory=<?php echo(urlencode($submitlink)) ?>&frompage=products" class="btn btn-default btn-xs btn-group-justified buttonspacebottom" >View Product Details</a>
-						<a href="suppliersforproduct.php?pcode={{subcategorydisp.code | encodeURIComponent}}&pname={{subcategorydisp.name | encodeURIComponent}}&category=<?php echo(urlencode($category)) ?>&subcategory=<?php echo(urlencode($subcategory)) ?>&frompage=products" type="button" class="btn btn-primary btn-xs btn-group-justified btn-primary">View Suppliers / Send Enquiry</a>
+						<a href="productenquiryform.php?pcode={{subcategorydisp.code | encodeURIComponent}}&pname={{subcategorydisp.name | encodeURIComponent}}&category=<?php echo(urlencode($category)) ?>&subcategory=<?php echo(urlencode($subcategory)) ?>&frompage=products" type="button" class="btn btn-primary btn-xs btn-group-justified btn-primary">Send Enquiry</a>
 					</div>
 				</div>
 			</div>

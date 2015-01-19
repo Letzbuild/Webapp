@@ -1,4 +1,5 @@
 <?php
+$supplierenquiryshow="false";
 if (empty($_GET['scode'])) {$scode='';} else {$scode=$_GET["scode"]; }
 if (empty($_GET['sname'])) {$sname='';} else {$sname=$_GET["sname"]; }
 if (empty($_GET['pcode'])) {$pcode='';} else {$pcode=$_GET["pcode"]; }
@@ -98,6 +99,7 @@ $('datepicker').datetimepicker({
 		<h4 class="pageheader product-header" ><span class="fa fa-database fa-breadcrumb" ></span>Product Enquiry For <?php echo($pname) ?></h4><div class="hr-header"></div>
 		<?php include('pageloader.php') ?>
 		<div  ng:repeat="subcategorydisp in subcategorylist.result">
+		<form name="productenquiryform" id="productenquiryform">
 			<div class="media" >
 					<a href="#" class="pull-left">
 						  <img ng-src="images/productimages/{{subcategorydisp.url}}" err-SRC="images/productimages/noimage.jpg" class="thumbnail"/>
@@ -112,19 +114,8 @@ $('datepicker').datetimepicker({
             <div class="clearfix" ></div>
 			
 				
-				<div class="col-sm-6"  >
-					<label for="dimension">Dimensions List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-					<div class="input-group custom-input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
-				   <select class="form-control input-sm"  id="dimension" name="dimension" mandatory="yes" >
-						<option value="none" selected>Dimesions List</option>
-						<option ng:repeat="child in subcategorydisp.dim">{{child}}</option>
-					</select>
-					<span id="dimension-display"></span>
-					</div>
-				</div>
-				<div class="col-sm-6" >				
-					<label for="specification">Specifications List<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="col-sm-3" >				
+					<label for="specification">Specifications<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
 					<div class="input-group custom-input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
 					 <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
@@ -135,8 +126,19 @@ $('datepicker').datetimepicker({
 					</div>
 				</div>
 				
-				
-				<div class="col-sm-6"  >
+				<div class="col-sm-3"  >
+					<label for="dimension">Dimensions<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+					<div class="input-group custom-input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+				   <select class="form-control input-sm"  id="dimension" name="dimension" mandatory="yes" >
+						<option value="none" selected>Dimesions List</option>
+						<option ng:repeat="child in subcategorydisp.dim">{{child}}</option>
+					</select>
+					<span id="dimension-display"></span>
+					</div>
+				</div>
+								
+				<div class="col-sm-3"  >
 					<label for="quantity">Quantity<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
 					<div class="input-group custom-input-group">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
@@ -144,8 +146,8 @@ $('datepicker').datetimepicker({
 						<span id="quantity-display"></span>
 				   </div>
 				</div>
-				<div class="col-sm-6" >
-					<label for="orderspecification">Quantity Specification<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="col-sm-3" >
+					<label for="orderspecification">Unit<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
 					<div class="input-group custom-input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
 					 <select class="form-control input-sm"  id="orderspecification" name="orderspecification" mandatory="yes">
@@ -156,10 +158,74 @@ $('datepicker').datetimepicker({
 					</div>
 				</div>	
 			
+				<div class="col-sm-3">
+				<label for="budget">Approximate Budget<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+					<input type="text" class="form-control input-sm" id="budget" placeholder="Approximate Budget" onblur="isphonenumber(document.getElementById(this.id))"  maxlength="9" mandatory="yes">
+					<span id="budget-display"></span>
+				</div>
+				</div>
+				
+				<div class="col-sm-3">
+				 <label for="frequency">Frequency<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+					 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></span>
+					<input type="text" class="form-control input-sm" id="frequency" placeholder="Frequency"  maxlength="30" mandatory="yes">
+					 <span id="frequency-display"></span>
+				</div>               
+				</div>
+				
+				<div class="col-sm-6">
+				 <label for="reasonforpurchase">Purpose<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+					 <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
+					<input type="text" class="form-control input-sm" id="reasonforpurchase" placeholder="Purpose"  maxlength="30" mandatory="yes">
+					 <span id="reasonforpurchase-display"></span>
+				</div>  
+				</div>
+				
+				
+				<div class="col-sm-12">
+				 <label for="anyspecialinstruction">Any Special Instruction<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+				   <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span> 
+				   <textarea rows="3" class="form-control input-sm" id="anyspecialinstruction" placeholder="Any Special Instruction"  mandatory="yes" wrap=physical  onKeyDown="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);" onKeyUp="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);"></textarea>
+				   <input readonly class="form-control input-sm" type=text name=remLen size=3 maxlength=3 value="200"> characters left<br>
+				   <span id="anyspecialinstruction-display"></span>
+				</div> 
+				</div>
+				
+				
+				
+				<div class="col-sm-3">
+				<label for="deliverylocation">Delivery Location<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+					<input type="text" class="form-control input-sm" id="deliverylocation" placeholder="Delivery Location"  maxlength="30" mandatory="yes">
+					 <span id="deliverylocation-display"></span>
+				</div>
+				</div>
+				
+				<div class="col-sm-3">
+				 <label for="datepicker" control-label>Date Of Requirement<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				 <div class="input-group custom-input-group">
+					 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					<input type="text" class="form-control input-sm clsDatePicker" id="datepicker" placeholder="Click To Add Date" mandatory="yes"   maxlength="15" style="z-index: 9999999" >
+					 <span id="datepicker-display"></span>
+				</div>       
+				</div>
+				
+				<div class="col-sm-6">
+				<label for="subject">Subject<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<div class="input-group custom-input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+					<input type="text" class="form-control input-sm" id="subject" placeholder="Subject" maxlength="30" mandatory="yes">
+					<span id="subject-display"></span>
+				</div>
+				</div>
 			
-			
-			<form name="productenquiryform" id="productenquiryform">
-			<div class="col-sm-6">
+			<div class="col-sm-3">
      		<label for="firstname" onkeyup="productenquiry(this.form.name)">First Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -168,7 +234,7 @@ $('datepicker').datetimepicker({
             </div>
 			</div>	
 			
-			<div class="col-sm-6">
+			<div class="col-sm-3">
             <label for="lastname">Last Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -177,7 +243,7 @@ $('datepicker').datetimepicker({
             </div>
 			</div>
 			
-			<div class="col-sm-6">
+			<div class="col-sm-3">
             <label for="organisation">Organisation<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
@@ -186,7 +252,7 @@ $('datepicker').datetimepicker({
             </div>
 			</div>	
 
-			<div class="col-sm-6">
+			<div class="col-sm-3">
             <label for="mobilenumber">Mobile Number<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
@@ -195,7 +261,7 @@ $('datepicker').datetimepicker({
             </div>
 			</div>
 			
-			<div class="col-sm-6">
+			<div class="col-sm-3">
               <label for="email">Email<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>    
               <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
@@ -203,73 +269,11 @@ $('datepicker').datetimepicker({
                 <span id="email-display"></span>
              </div>
             </div>
+						
 			
-			<div class="col-sm-6">
-            <label for="subject">Subject<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
-                <input type="text" class="form-control input-sm" id="subject" placeholder="Subject" maxlength="30" mandatory="yes">
-                <span id="subject-display"></span>
-            </div>
-            </div>
-			
-			<div class="col-sm-6">
-             <label for="datepicker" control-label>Date Needed<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-             <div class="input-group custom-input-group">
-                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                <input type="text" class="form-control input-sm clsDatePicker" id="datepicker" placeholder="Click To Add Date" mandatory="yes"   maxlength="15" style="z-index: 9999999" >
-                 <span id="datepicker-display"></span>
-            </div>       
-			</div>
-			
-			<div class="col-sm-6">
-            <label for="budget">Approximate Budget<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
-                <input type="text" class="form-control input-sm" id="budget" placeholder="Approximate Budget" onblur="isphonenumber(document.getElementById(this.id))"  maxlength="9" mandatory="yes">
-                <span id="budget-display"></span>
-            </div>
-			</div>
-			
-			<div class="col-sm-6">
-            <label for="deliverylocation">Delivery Location<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
-                <input type="text" class="form-control input-sm" id="deliverylocation" placeholder="Delivery Location"  maxlength="30" mandatory="yes">
-                 <span id="deliverylocation-display"></span>
-            </div>
-            </div>
-			
-			<div class="col-sm-6">
-             <label for="frequency">Frequency<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></span>
-                <input type="text" class="form-control input-sm" id="frequency" placeholder="Frequency"  maxlength="30" mandatory="yes">
-                 <span id="frequency-display"></span>
-            </div>               
-			</div>
-			
-			<div class="col-sm-12">
-             <label for="reasonforpurchase">Reason For Purchase<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-                 <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
-                <input type="text" class="form-control input-sm" id="reasonforpurchase" placeholder="Reason For Purchase"  maxlength="30" mandatory="yes">
-                 <span id="reasonforpurchase-display"></span>
-            </div>  
-			</div>
-			
-			<div class="col-sm-12">
-             <label for="anyspecialinstruction">Any Special Instruction<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
-            <div class="input-group custom-input-group">
-               <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span> 
-               <textarea rows="3" class="form-control input-sm" id="anyspecialinstruction" placeholder="Any Special Instruction"  mandatory="yes" wrap=physical  onKeyDown="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);" onKeyUp="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);"></textarea>
-               <input readonly class="form-control input-sm" type=text name=remLen size=3 maxlength=3 value="200"> characters left<br>
-               <span id="anyspecialinstruction-display"></span>
-            </div> 
-            </div>
 
 			<div class="col-sm-12">
-            <button type="button" class="btn btn-warning"  onclick="productenquiry(this.form.name)" mandatory="no">Submit</button>
+            <button type="button" class="btn btn-warning"  onclick="productenquiry(this.form.name)" mandatory="no">Send Enquiry</button>
             <span class="error" style="display:none">
             <div class="alert alert-danger">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -329,7 +333,7 @@ $('datepicker').datetimepicker({
 
 </div>
 
-                             
+  <br>                          
 <!-- footer include -->
 <?php include('footer.php') ?>
 </body>

@@ -9,7 +9,7 @@ if (empty($_GET['linkid'])) {$linkid='';} else {$linkid=$_GET["linkid"]; }
 if ($linkid=="quotationrequest")
 {
 	$submitlink="http://$serverlink/enquiries/qs/add";
-	$displaytext="Quotation Request";
+	$displaytext="Quotation";
 }
 if ($linkid=="bom")
 {
@@ -19,7 +19,7 @@ if ($linkid=="bom")
 if ($linkid=="procurementmanagement")
 {
 	$submitlink="http://$serverlink/enquiries/pms/add";
-	$displaytext="Procurement Management";
+	$displaytext="Procurement Management Services (PMS)";
 }
 ?>
 
@@ -85,7 +85,7 @@ if ($linkid=="procurementmanagement")
 			<div class="col-sm-6">
             <label for="location">Location</label>
             <div class="input-group custom-input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
+                <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
               	<input type="text" class="form-control input-sm" id="location" name="location" placeholder="Location"maxlength="30"  mandatory="yes">
                 <span id="location-display"></span>
             </div>		 	

@@ -2,7 +2,7 @@
         <div class="container">
             <div class="hidden-xs ">
                 <ul class="list-inline container-space-top-bottom">
-                    <li><span class="fa fa-phone fa-navbar" ></span>+91 9543750740</li>
+                    <li><span class="fa fa-phone fa-navbar" ></span>Toll Free: +91 9543750740</li>
                     <li><span class="fa fa-envelope fa-navbar" ></span>admin@letzbuild.com</li>
                 </ul>
             </div>

@@ -1,9 +1,9 @@
     <!-- Column 1 side bar starts-->
 
 	 	<div class="col-sm-2 padding-left-zero" >
-			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=quotationrequest">Quotation Request</a>
-			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=bom">BOM</a>
-			<a class="btn btn-default  btn-block btn-sm" href="quotationrequest.php?linkid=procurementmanagement">Procurement Management</a>
+			<a class="btn btn-default  btn-block btn-md" href="quotationrequest.php?linkid=quotationrequest">Quotation</a>
+			<a class="btn btn-default  btn-block btn-md" href="quotationrequest.php?linkid=bom">BOM</a>
+			<a class="btn btn-default  btn-block btn-md" href="quotationrequest.php?linkid=procurementmanagement">PMS</a>
 		</div>
     <P class="visible-xs"><Br /></P>
 	

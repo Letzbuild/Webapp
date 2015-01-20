@@ -159,25 +159,43 @@ $('datepicker').datetimepicker({
 				</div>	
 			
 				<div class="col-sm-3">
-				<label for="budget">Approximate Budget<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				<label for="budget">Approximate Budget</label>
 				<div class="input-group custom-input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
-					<input type="text" class="form-control input-sm" id="budget" placeholder="Approximate Budget" onblur="isphonenumber(document.getElementById(this.id))"  maxlength="9" mandatory="yes">
-					<span id="budget-display"></span>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+					<select class="form-control input-sm"  id="budget" name="budget" mandatory="yes">
+						<option value="none" selected>Select Budget</option>
+						<option value="Rs.1 to Rs.50000" >Rs.1 to Rs.50000</option>
+						<option value="Rs.50001 to Rs.1,00,000" >Rs.50001 to Rs.1,00,000</option>
+						<option value="Rs.1,00,001 to Rs.5,00,000" >Rs.1,00,001 to Rs.5,00,000</option>
+						<option value="Rs.5,00,001 to Rs.10,00,000" >Rs.5,00,001 to Rs.10,00,000</option>
+						<option value="Rs.10,000,001 and above" >Rs.10,000,001 and above</option>
+					</select>
+					<!--<input type="text" class="form-control input-sm" id="budget" placeholder="Approximate Budget" onblur="isphonenumber(document.getElementById(this.id))"  maxlength="9" mandatory="yes">-->
+				<span id="budget-display"></span>
 				</div>
 				</div>
 				
 				<div class="col-sm-3">
-				 <label for="frequency">Frequency<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				 <label for="frequency">Frequency</label>
 				<div class="input-group custom-input-group">
-					 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></span>
-					<input type="text" class="form-control input-sm" id="frequency" placeholder="Frequency"  maxlength="30" mandatory="yes">
-					 <span id="frequency-display"></span>
+				 <span class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></span>
+					<select class="form-control input-sm"  id="frequency" name="frequency" mandatory="yes">
+						<option value="none" selected>Select Frequency</option>
+						<option value="One Time" >One Time</option>
+						<option value="Weekly">Weekly</option>
+						<option value="Monthly">Monthly</option>
+						<option value="Quaterly">Quaterly</option>
+						<option value="Yearly">Yearly</option>
+					</select>
+				 
+				 
+					<!--<input type="text" class="form-control input-sm" id="frequency" placeholder="Frequency"  maxlength="30" mandatory="yes">-->
+				 <span id="frequency-display"></span>
 				</div>               
 				</div>
 				
 				<div class="col-sm-6">
-				 <label for="reasonforpurchase">Purpose<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				 <label for="reasonforpurchase">Purpose</label>
 				<div class="input-group custom-input-group">
 					 <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign"></span></span>
 					<input type="text" class="form-control input-sm" id="reasonforpurchase" placeholder="Purpose"  maxlength="30" mandatory="yes">
@@ -187,7 +205,7 @@ $('datepicker').datetimepicker({
 				
 				
 				<div class="col-sm-12">
-				 <label for="anyspecialinstruction">Any Special Instruction<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+				 <label for="anyspecialinstruction">Any Special Instruction</label>
 				<div class="input-group custom-input-group">
 				   <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span> 
 				   <textarea rows="3" class="form-control input-sm" id="anyspecialinstruction" placeholder="Any Special Instruction"  mandatory="yes" wrap=physical  onKeyDown="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);" onKeyUp="textCounter(this.form.anyspecialinstruction,this.form.remLen,200);"></textarea>
@@ -235,7 +253,7 @@ $('datepicker').datetimepicker({
 			</div>	
 			
 			<div class="col-sm-3">
-            <label for="lastname">Last Name<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+            <label for="lastname">Last Name</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
               	<input type="text" class="form-control input-sm" id="lastname" placeholder="Last Name" maxlength="30" mandatory="yes">

@@ -18,12 +18,32 @@ $pagetab="";
 <script src="../js/admin.js"></script>
 
 
+<SCRIPT TYPE="text/javascript">
+<!--
+function submitenter(myfield,e)
+{
+var keycode;
+if (window.event) keycode = window.event.keyCode;
+else if (e) keycode = e.which;
+else return true;
+
+if (keycode == 13)
+   {
+   adminloginform();
+   return false;
+   }
+else
+   return true;
+}
+//-->
+</SCRIPT>
+
 </head>
 
 <body>
 
 <div class="col-sm-12 adminheader">
-	<img src="../images/home/logo.png">
+	<img src="../images/home/logo.jpg">
     <span><strong>Administration Back Office</strong></span>
 </div>
 
@@ -42,7 +62,7 @@ $pagetab="";
             <label for="password">Password</label>
             <div class="input-group custom-input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-              	<input name="password" type="password" class="form-control" id="password"  placeholder="Password" maxlength="30"  mandatory="yes" >
+              	<input name="password" type="password" class="form-control" id="password"  placeholder="Password" maxlength="30"  mandatory="yes" onKeyPress="return submitenter(this,event)">
 	            <span id="password-display"></span>
             </div>
              

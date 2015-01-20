@@ -3,32 +3,21 @@
 	  <div class="footer-widget">
 		  <div class="container">
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-						</div>
-					</div>
 					
-					<div class="col-sm-3">
+					
+					<div class="col-sm-4">
 						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Disclaimers</a></li>
 								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								
+								
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-4">
 						<div class="single-widget">
 							<h2>About Letzbuild</h2>
 							<ul class="nav nav-pills nav-stacked">
@@ -40,7 +29,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-4">
 						<div class="single-widget">
 							<h2>Email Letzbuild</h2>
 							<form action="#" class="searchform">
@@ -59,7 +48,7 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright &#169; 2014 Letzbuild India Private Limited. All rights reserved.</p>
-					<p class="pull-right">Designed and Developed by <span><a target="_blank" href="http://www.varnamayamedia.com">Varnamayamedia.com</a></span></p>
+					
 				</div>
 			</div>
 		</div>

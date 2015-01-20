@@ -73,12 +73,15 @@ ul.rating {
 }
    </style>
    
-   
+
    
 
 </head>
 
 <body>
+
+
+
 
 <?php include('top.php')?>
 <div class="container">
@@ -129,12 +132,21 @@ ul.rating {
 						</div>
 					</div>
 			<pagination total-items="bigTotalItems"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm pagination-header" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsperpage" ng-click="setPage(bigCurrentPage)"></pagination>		
-					
+
+
+   
+    
+    
 					
 					
 			</div>
 		</div>
 </div>
+
+
+
+
+
 
 <!-- footer include -->
 <?php include('footer.php') ?>

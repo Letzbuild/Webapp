@@ -25,7 +25,7 @@
 				<ul class="nav navbar-nav"  >
 							<li class="active "><a href="index.php"><span class="fa fa-database fa-navbar" ></span>Products <span class="fa fa-book fa-exchange"></span> <span class="fa fa-user fa-navbar"></span>Suppliers</a></li>
 							<li><a href="#"><span class="fa fa-wrench fa-navbar"></span>Services</a></li>
-							<li><a href="#"><span class="fa fa-envelope fa-navbar fa-fw"></span>Contact Us</a></li>
+							<li><a href="contactus.php"><span class="fa fa-envelope fa-navbar fa-fw"></span>Contact Us</a></li>
 				</ul>
 			</div>
 		</nav>

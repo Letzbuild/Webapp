@@ -64,16 +64,16 @@ $myserverlink="http://$serverlink/products/categories?";
 					<div class="panel panel-default">
 						<div class="panel-heading panel-header-category">
 							<span class="panel-title" >
-								<a  href="subcategory.php?category={{ items.category | encodeURIComponent }}&pagecount={{ items.cnt | encodeURIComponent }}"><span class="panel-title-category" style="color:#598bd0">{{ items.category}}</span></a>
+								<!--<a  href="subcategory.php?category={{ items.category | encodeURIComponent }}&pagecount={{ items.cnt | encodeURIComponent }}">--><span class="panel-title-category" >{{ items.category}}</span><!--</a>-->
 							</span>
 						</div>
 						<div class="panel-body ">
 						
-							<div ng:repeat="child in items.subCats | limitTo:5">
+							<div ng:repeat="child in items.subCats | limitTo:10">
 								<a  href="products.php?subcategory={{child.cat | encodeURIComponent }}&pagecount={{child.cnt | encodeURIComponent }}&category={{ items.category | encodeURIComponent }}">{{child.cat}}</a><span class="badge pull-right">{{child.cnt}}</span>
 							</div>
 							<br>
-							<div ng-show="items.cnt > 5">
+							<div ng-show="items.cnt > 10">
 								<a  href="subcategory.php?category={{ items.category | encodeURIComponent }}&pagecount={{ items.cnt | encodeURIComponent }}"class="btn  btn-xs btn-group-justified btn-primary">View More</a>
 							</div>
 						</div>

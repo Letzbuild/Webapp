@@ -296,7 +296,7 @@ var productcode = $("#productcode").val();
 var serverlink = $("#serverlink").val();
 
 fieldcoloranderrormessage("firstname","","red","finished");
-//fieldcoloranderrormessage("lastname","","red","finished");
+fieldcoloranderrormessage("lastname","","red","finished");
 fieldcoloranderrormessage("organisation","","red","finished");
 fieldcoloranderrormessage("mobilenumber","","red","finished");
 fieldcoloranderrormessage("email","","red","finished");
@@ -304,12 +304,13 @@ fieldcoloranderrormessage("quantity","","red","finished");
 fieldcoloranderrormessage("orderspecification","","red","finished");
 fieldcoloranderrormessage("specification","","red","finished");
 fieldcoloranderrormessage("dimension","","red","finished");
+fieldcoloranderrormessage("subject","","red","finished");
 fieldcoloranderrormessage("datepicker","","red","finished");
 fieldcoloranderrormessage("budget","","red","finished");
-//fieldcoloranderrormessage("deliverylocation","","red","finished");
-//fieldcoloranderrormessage("frequency","","red","finished");
-//fieldcoloranderrormessage("reasonforpurchase","","red","finished");
-//fieldcoloranderrormessage("anyspecialinstruction","","red","finished");
+fieldcoloranderrormessage("deliverylocation","","red","finished");
+fieldcoloranderrormessage("frequency","","red","finished");
+fieldcoloranderrormessage("reasonforpurchase","","red","finished");
+fieldcoloranderrormessage("anyspecialinstruction","","red","finished");
 
 
 if (firstname=='')
@@ -356,6 +357,27 @@ if (orderspecification=="none" )
 		errtype="unfinished"
 	}
 
+	
+if ($('#dimension option').length > 1) 
+{
+	if (dimension=="none" )
+	{
+		fieldcoloranderrormessage("dimension","This field is required","red","unfinished");
+		errtype="unfinished"
+	}    
+}	
+
+if ($('#specification option').length > 1) 
+{
+	if (specification=="none" )
+	{
+		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
+		errtype="unfinished"
+	}    
+}
+	
+	
+/*
 if (specification=="none" )
 	{
 		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
@@ -367,6 +389,7 @@ if (dimension=="none" )
 		fieldcoloranderrormessage("dimension","This field is required","red","unfinished");
 		errtype="unfinished"
 	}
+*/
 	
 if (subject=='')
 	{
@@ -508,9 +531,15 @@ var dimension = e.options[e.selectedIndex].value;
 
 var subject = $("#subject").val();
 var datepicker = $("#datepicker").val();
-var budget = $("#budget").val();
+
+var e = document.getElementById("budget");
+var budget = e.options[e.selectedIndex].value;
+
 var deliverylocation = $("#deliverylocation").val();
-var frequency = $("#frequency").val();
+
+var e = document.getElementById("frequency");
+var frequency = e.options[e.selectedIndex].value;
+
 var reasonforpurchase = $("#reasonforpurchase").val();
 var anyspecialinstruction = $("#anyspecialinstruction").val();
 
@@ -545,11 +574,11 @@ if (firstname=='')
 		errtype="unfinished"
 	}
 
-if (lastname=='')
+/*if (lastname=='')
 	{
 		fieldcoloranderrormessage("lastname","This field is required","red","unfinished");
 		errtype="unfinished"
-	}
+	}*/
 
 if (organisation=='')
 	{
@@ -581,7 +610,25 @@ if (orderspecification=="none" )
 		errtype="unfinished"
 	}
 
-if (specification=="none" )
+if ($('#dimension option').length > 1) 
+{
+	if (dimension=="none" )
+	{
+		fieldcoloranderrormessage("dimension","This field is required","red","unfinished");
+		errtype="unfinished"
+	}    
+}	
+
+if ($('#specification option').length > 1) 
+{
+	if (specification=="none" )
+	{
+		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
+		errtype="unfinished"
+	}    
+}	
+	
+/*if (specification=="none" )
 	{
 		fieldcoloranderrormessage("specification","This field is required","red","unfinished");
 		errtype="unfinished"
@@ -591,7 +638,7 @@ if (dimension=="none" )
 	{
 		fieldcoloranderrormessage("dimension","This field is required","red","unfinished");
 		errtype="unfinished"
-	}
+	}*/
 	
 if (subject=='')
 	{
@@ -605,11 +652,11 @@ if (datepicker=='')
 		errtype="unfinished"
 	}
 	
-if (budget=='')
+/*if (budget=='')
 	{
 		fieldcoloranderrormessage("budget","This field is required","red","unfinished");
 		errtype="unfinished"
-	}
+	}*/
 			
 if (deliverylocation=='')
 	{
@@ -617,7 +664,7 @@ if (deliverylocation=='')
 		errtype="unfinished"
 	}
 	
-if (frequency=='')
+/*if (frequency=='')
 	{
 		fieldcoloranderrormessage("frequency","This field is required","red","unfinished");
 		errtype="unfinished"
@@ -633,7 +680,7 @@ if (anyspecialinstruction=='')
 	{
 		fieldcoloranderrormessage("anyspecialinstruction","This field is required","red","unfinished");
 		errtype="unfinished"
-	}
+	}*/
 
 if (errtype=='unfinished')
 	{

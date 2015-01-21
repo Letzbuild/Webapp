@@ -115,7 +115,7 @@ $('datepicker').datetimepicker({
 			
 				
 				<div class="col-sm-3" >				
-					<label for="specification">Specifications<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+					<label for="specification">Specifications</label>
 					<div class="input-group custom-input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
 					 <select class="form-control input-sm"  id="specification" name="specification" mandatory="yes">
@@ -127,7 +127,7 @@ $('datepicker').datetimepicker({
 				</div>
 				
 				<div class="col-sm-3"  >
-					<label for="dimension">Dimensions<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>
+					<label for="dimension">Dimensions</label>
 					<div class="input-group custom-input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
 				   <select class="form-control input-sm"  id="dimension" name="dimension" mandatory="yes" >
@@ -279,6 +279,8 @@ $('datepicker').datetimepicker({
             </div>
 			</div>
 			
+			<div class="clearfix"></div>
+			
 			<div class="col-sm-3">
               <label for="email">Email<sup>&nbsp;<span class="glyphicon glyphicon-asterisk superclass"></span></sup></label>    
               <div class="input-group custom-input-group">
@@ -288,7 +290,7 @@ $('datepicker').datetimepicker({
              </div>
             </div>
 						
-			
+			<div class="clearfix"></div>
 
 			<div class="col-sm-12">
             <button type="button" class="btn btn-warning"  onclick="productenquiry(this.form.name)" mandatory="no">Send Enquiry</button>
@@ -301,7 +303,7 @@ $('datepicker').datetimepicker({
             <span  class="success" style="display:none"> 
             <div class="alert alert-success">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <strong>Success!</strong> Form was saved successfully. Please check your email for details.
+                <strong>Success!</strong> Make a note of your enquiry number <strong><?php echo($productenquirynumber) ?></strong>. Please check your email for details.
             </div>
            </span>
 		   </div>

@@ -138,7 +138,7 @@ if ($linkid=="procurementmanagement")
 			<span  class="success" style="display:none"> 
 			<div class="alert alert-success">
 				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>Success!</strong> Form was saved successfully. Please check your email for details.
+				<strong>Success!</strong> Make a note of your enquiry number <strong><?php echo($productenquirynumber) ?></strong>. Please check your email for details.
 			</div>
 			</span>
 			</div>
